@@ -22,21 +22,21 @@ export default function HeroSection() {
               <img
                 src="/images/slider1.jpg"
                 alt="Gambar 1"
-                className="w-full h-90 object-cover rounded-lg"
+                className="w-full h-80 object-cover rounded-lg"
               />
             </SwiperSlide>
             <SwiperSlide>
               <img
                 src="/images/slider1.jpg"
                 alt="Gambar 2"
-                className="w-full h-90 object-cover rounded-lg"
+                className="w-full h-80 object-cover rounded-lg"
               />
             </SwiperSlide>
             <SwiperSlide>
               <img
                 src="/slider1.jpg"
                 alt="Gambar 3"
-                className="w-full h-90 object-cover rounded-lg"
+                className="w-full h-80 object-cover rounded-lg"
               />
             </SwiperSlide>
           </Swiper>

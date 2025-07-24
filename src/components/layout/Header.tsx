@@ -1,35 +1,55 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
-import { ChevronDown, Menu } from "lucide-react";
+import { ChevronDown, LayoutDashboard, LogOut, Menu } from "lucide-react";
 import Image from "next/image";
+import { useAuthStore } from "@/app/stores/useAuthStore";
+import axios from "axios";
+import { useMutation } from "@tanstack/react-query";
+import { logout } from "@/services/auth.service";
+import { toast } from "sonner";
 
 export default function Header() {
   const pathname = usePathname();
+  const router = useRouter();
   const [showDropdown, setShowDropdown] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const [showUserDropdown, setShowUserDropdown] = useState(false);
+  const { user, setUser, clearUser } = useAuthStore();
 
-  // Simulasi login (ganti nanti dengan session dari supabase)
-  const isLoggedIn = false;
-  const adminName = "Admin Desa";
+  const isLoggedIn = !!user;
 
-  // Fungsi helper untuk memberi kelas aktif
+  const adminName = user?.name || "Admin Desa";
+
   const isActive = (path: string) =>
     pathname === path ? "text-green-700 font-semibold" : "text-gray-700";
 
+  const mutation = useMutation({
+    mutationFn: logout,
+    onSuccess: () => {
+      clearUser();
+      toast.success("Logout berhasil!");
+      router.push("/");
+    },
+    onError: (error: any) => {
+      toast.error(error.response?.data?.message || "Terjadi kesalahan");
+    },
+  });
+
   return (
     <header className="bg-white shadow sticky top-0 z-50">
-      <div className="container mx-auto max-w-7xl px-4 py-3 flex items-center justify-between">
-        {/* Logo & Nama */}
+      <div className="container mx-auto max-w-7xl px-4 py-6 flex items-center justify-between">
+        {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
           <img src="/logo-desa.jpeg" alt="Logo Desa" className="h-10 w-10" />
           <span className="text-xl font-bold text-green-700">Desa Contoh</span>
         </Link>
+
         <div className="flex gap-6 items-center">
           {/* Desktop Menu */}
-          <nav className="hidden md:flex items-center  gap-6">
+          <nav className="hidden md:flex items-center gap-6">
             <Link href="/" className={`${isActive("/")} hover:text-green-600`}>
               Beranda
             </Link>
@@ -47,36 +67,21 @@ export default function Header() {
               </button>
               {showDropdown && (
                 <div className="absolute top-full left-0 mt-2 bg-white border rounded shadow w-48 z-10">
-                  <Link
-                    href="/profil/visi-misi"
-                    className="block px-4 py-2 hover:bg-gray-100"
-                  >
-                    Visi & Misi
-                  </Link>
-                  <Link
-                    href="/profil/sejarah"
-                    className="block px-4 py-2 hover:bg-gray-100"
-                  >
-                    Sejarah
-                  </Link>
-                  <Link
-                    href="/profil/geografis"
-                    className="block px-4 py-2 hover:bg-gray-100"
-                  >
-                    Geografis
-                  </Link>
-                  <Link
-                    href="/profil/ekonomi"
-                    className="block px-4 py-2 hover:bg-gray-100"
-                  >
-                    Ekonomi
-                  </Link>
-                  <Link
-                    href="/profil/demografis"
-                    className="block px-4 py-2 hover:bg-gray-100"
-                  >
-                    Demografis
-                  </Link>
+                  {[
+                    ["Visi & Misi", "/profil/visi-misi"],
+                    ["Sejarah", "/profil/sejarah"],
+                    ["Geografis", "/profil/geografis"],
+                    ["Ekonomi", "/profil/ekonomi"],
+                    ["Demografis", "/profil/demografis"],
+                  ].map(([label, href]) => (
+                    <Link
+                      key={href}
+                      href={href}
+                      className="block px-4 py-2 hover:bg-gray-100"
+                    >
+                      {label}
+                    </Link>
+                  ))}
                 </div>
               )}
             </div>
@@ -95,8 +100,8 @@ export default function Header() {
             </Link>
           </nav>
 
-          {/* Kanan: Login / Avatar */}
-          <div className="hidden md:flex items-center gap-3">
+          {/* Kanan: Login atau Avatar */}
+          <div className="hidden md:flex items-center gap-3 relative">
             {!isLoggedIn ? (
               <Link
                 href="/auth/login"
@@ -105,15 +110,39 @@ export default function Header() {
                 Login
               </Link>
             ) : (
-              <div className="flex items-center gap-2">
-                <Image
-                  src="/avatar-default.svg"
-                  alt="Admin Avatar"
-                  width={32}
-                  height={32}
-                  className="rounded-full"
-                />
-                <span className="text-gray-700">{adminName}</span>
+              <div className="relative">
+                <button
+                  onClick={() => setShowUserDropdown(!showUserDropdown)}
+                  className="flex cursor-pointer items-center gap-2 focus:outline-none"
+                >
+                  <Image
+                    src={user.avatar_url || "/avatar-default.svg"}
+                    alt="Admin Avatar"
+                    width={32}
+                    height={32}
+                    className="rounded-full"
+                  />
+                </button>
+
+                {showUserDropdown && (
+                  <div className="absolute right-0 mt-2 w-56 px-2 py-4 bg-white border rounded shadow z-20">
+                    <Link
+                      href="/dashboard"
+                      className="flex items-center gap-2 px-4 py-2 hover:bg-gray-100 text-lg font-semibold text-gray-700"
+                    >
+                      <LayoutDashboard size={16} />
+                      Dashboard
+                    </Link>
+                    <button
+                      onClick={() => mutation.mutate()}
+                      disabled={mutation.isPending}
+                      className="flex w-full items-center gap-2 px-4 py-2 hover:bg-gray-100 font-semibold text-lg text-gray-700"
+                    >
+                      <LogOut size={16} />
+                      Logout
+                    </button>
+                  </div>
+                )}
               </div>
             )}
           </div>
@@ -137,21 +166,17 @@ export default function Header() {
           <div className="py-2">
             <p className="font-medium">Profil Desa</p>
             <div className="pl-4 text-sm">
-              <Link href="/profil/visi-misi" className="block py-1">
-                Visi & Misi
-              </Link>
-              <Link href="/profil/sejarah" className="block py-1">
-                Sejarah
-              </Link>
-              <Link href="/profil/geografis" className="block py-1">
-                Geografis
-              </Link>
-              <Link href="/profil/ekonomi" className="block py-1">
-                Ekonomi
-              </Link>
-              <Link href="/profil/demografis" className="block py-1">
-                Demografis
-              </Link>
+              {[
+                ["Visi & Misi", "/profil/visi-misi"],
+                ["Sejarah", "/profil/sejarah"],
+                ["Geografis", "/profil/geografis"],
+                ["Ekonomi", "/profil/ekonomi"],
+                ["Demografis", "/profil/demografis"],
+              ].map(([label, href]) => (
+                <Link key={href} href={href} className="block py-1">
+                  {label}
+                </Link>
+              ))}
             </div>
           </div>
           <Link href="/pemerintah-desa" className="block py-2">
@@ -160,6 +185,7 @@ export default function Header() {
           <Link href="/potensi-desa" className="block py-2">
             Potensi Desa
           </Link>
+
           {!isLoggedIn ? (
             <Link
               href="/auth/login"
@@ -177,6 +203,13 @@ export default function Header() {
                 className="rounded-full"
               />
               <span>{adminName}</span>
+              <button
+                onClick={() => mutation.mutate()}
+                disabled={mutation.isPending}
+                className="text-sm text-red-600 ml-auto"
+              >
+                Logout
+              </button>
             </div>
           )}
         </div>
