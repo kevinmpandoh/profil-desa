@@ -6,32 +6,32 @@ const perangkatDesa = [
   {
     nama: "Andi Supardi",
     jabatan: "Kepala Desa",
-    foto: "/images/perangkat/andi.jpg",
+    foto: "/images/perangkat1.png",
   },
   {
     nama: "Siti Nurhaliza",
     jabatan: "Sekretaris Desa",
-    foto: "/images/perangkat/siti.jpg",
+    foto: "/images/perangkat1.png",
   },
   {
     nama: "Budi Santoso",
     jabatan: "Kaur Keuangan",
-    foto: "/images/perangkat/budi.jpg",
+    foto: "/images/perangkat1.png",
   },
   {
     nama: "Rina Marlina",
     jabatan: "Kaur Umum",
-    foto: "/images/perangkat/rina.jpg",
+    foto: "/images/perangkat1.png",
   },
   {
     nama: "Joko Purnomo",
     jabatan: "Kadus I",
-    foto: "/images/perangkat/joko.jpg",
+    foto: "/images/perangkat1.png",
   },
   {
     nama: "Maya Dewi",
     jabatan: "Kadus II",
-    foto: "/images/perangkat/maya.jpg",
+    foto: "/images/perangkat1.png",
   },
 ];
 

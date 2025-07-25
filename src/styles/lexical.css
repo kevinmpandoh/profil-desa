@@ -1,0 +1,9 @@
+.ProseMirror,
+.editor-class {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.editor-class p {
+  margin-bottom: 0.75rem;
+}

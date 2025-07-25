@@ -15,20 +15,40 @@ const misiDesa = [
   "Meningkatkan infrastruktur dan aksesibilitas antar dusun.",
 ];
 
+const visiHTML = `
+  <p>
+    Menjadikan Desa Wuwuk sebagai desa yang mandiri, sejahtera, dan berbudaya 
+    berbasis potensi lokal dan partisipasi masyarakat.
+  </p>
+`;
+
+const misiHTML = `
+  <ul>
+    <li>Meningkatkan kualitas pelayanan publik kepada masyarakat desa.</li>
+    <li>Mengembangkan potensi pertanian, UMKM, dan kearifan lokal sebagai pilar ekonomi desa.</li>
+    <li>Menjaga kelestarian lingkungan hidup dan warisan budaya desa.</li>
+    <li>Mendorong partisipasi aktif masyarakat dalam pembangunan berkelanjutan.</li>
+    <li>Meningkatkan infrastruktur dasar dan aksesibilitas antar wilayah desa.</li>
+  </ul>
+`;
+
 export default function VisiMisiDesaPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-16">
       <h1 className="text-3xl md:text-4xl font-bold text-center text-green-800 mb-12">
-        Visi dan Misi Desa
+        Visi dan Misi Desa Wuwuk
       </h1>
 
       {/* Visi */}
       <Card className="mb-8 shadow-lg border-green-200">
         <CardContent className="p-6">
           <h2 className="text-2xl font-semibold text-green-700 mb-3">Visi</h2>
-          <p className="text-gray-700 leading-relaxed text-justify">
-            {visiDesa}
-          </p>
+          <div className="text-gray-700 leading-relaxed text-justify">
+            <div
+              className="prose prose-green max-w-none text-justify"
+              dangerouslySetInnerHTML={{ __html: visiHTML }}
+            />
+          </div>
         </CardContent>
       </Card>
 
@@ -36,11 +56,10 @@ export default function VisiMisiDesaPage() {
       <Card className="shadow-lg border-green-200">
         <CardContent className="p-6">
           <h2 className="text-2xl font-semibold text-green-700 mb-3">Misi</h2>
-          <ul className="list-disc list-inside text-gray-700 space-y-2">
-            {misiDesa.map((misi, index) => (
-              <li key={index}>{misi}</li>
-            ))}
-          </ul>
+          <div
+            className="prose prose-green max-w-none text-justify"
+            dangerouslySetInnerHTML={{ __html: misiHTML }}
+          />
         </CardContent>
       </Card>
     </div>

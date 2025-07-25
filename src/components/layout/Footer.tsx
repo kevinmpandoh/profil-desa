@@ -12,9 +12,12 @@ const footerLinks = [
 ];
 
 const kontakInfo = [
-  { title: "Alamat", value: "Jl. Raya Desa Indah No. 123, Minahasa" },
-  { title: "Email", value: "desaku@example.com" },
-  { title: "Telepon", value: "+62 812-3456-7890" },
+  {
+    title: "Alamat",
+    value: "Desa Wuwuk, Kec. Tareran, Minahasa Selatan, Sulawesi Utara 95353",
+  },
+  { title: "Email", value: "pemdeswuwuk@example.com" }, // ganti jika ada email resmi
+  { title: "Telepon", value: "+62 812-3456-7890" }, // ganti atau kosongkan jika tidak ada
 ];
 
 export default function Footer() {
@@ -25,17 +28,17 @@ export default function Footer() {
         <div>
           <div className="flex items-center gap-2 mb-4">
             <Image
-              src="/logo-desa.jpeg"
+              src="/logo-desa.png"
               alt="Logo Desa"
               width={40}
               height={40}
             />
-            <span className="text-xl font-semibold">[Nama Desa]</span>
+            <span className="text-xl font-semibold">Desa Wuwuk</span>
           </div>
           <p className="text-sm text-gray-300">
-            Website resmi [Nama Desa], Kecamatan [Nama Kecematan], Kabupaten
-            [Nama Kabupaten]. Informasi, potensi, dan layanan masyarakat dalam
-            satu tempat.
+            Website resmi Desa Wuwuk, Kecamatan Tareran, Kabupaten Minahasa
+            Selatan. Menyediakan informasi, potensi lokal, dan layanan bagi
+            masyarakat.
           </p>
         </div>
 
@@ -71,7 +74,7 @@ export default function Footer() {
 
       {/* Footer Bawah */}
       <div className="bg-gray-900 text-center text-sm py-4 text-gray-300">
-        &copy; {new Date().getFullYear()} Powered by Kevin Pandoh
+        &copy; {new Date().getFullYear()} Dibuat oleh Mahasiswa KKT UNSRAT
       </div>
     </footer>
   );

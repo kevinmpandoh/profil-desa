@@ -34,7 +34,7 @@ export default function HeroSection() {
             </SwiperSlide>
             <SwiperSlide>
               <img
-                src="/slider1.jpg"
+                src="/images/slider1.jpg"
                 alt="Gambar 3"
                 className="w-full h-80 object-cover rounded-lg"
               />
@@ -43,19 +43,22 @@ export default function HeroSection() {
         </div>
 
         {/* Teks Sambutan */}
-        <div className="order-2 md:order-1 relative z-10">
+        <div className="order-2 md:order-1 relative z-10 p-6">
           {/* Ornamen background */}
           <div className="absolute inset-0 md:-left-8 md:-top-8 -z-10 hidden md:block">
             <div className="w-full h-full bg-green-50 rounded-xl rotate-2 shadow-md" />
           </div>
 
           <h1 className="text-3xl md:text-4xl font-bold text-green-700 mb-4">
-            Selamat Datang di Website Resmi Desa Contoh
+            Selamat Datang di Website Resmi Desa Wuwuk
           </h1>
-          <p className="text-gray-700 mb-6 leading-relaxed">
-            Website ini merupakan sarana informasi dan komunikasi antara
-            pemerintah desa dan masyarakat. Mari bersama-sama membangun desa
-            yang lebih maju, mandiri, dan sejahtera.
+          <p className="text-gray-500 text-sm mb-2">
+            Kec. Tombariri, Kab. Minahasa Selatan, Sulawesi Utara
+          </p>
+          <p className="text-gray-700 mb-6 leading-relaxed text-lg">
+            Website ini hadir sebagai media informasi, pelayanan, dan komunikasi
+            antara Pemerintah Desa Wuwuk dan masyarakat. Bersama, mari kita
+            wujudkan desa yang maju, mandiri, dan sejahtera.
           </p>
         </div>
       </div>

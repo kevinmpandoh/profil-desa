@@ -4,14 +4,18 @@
 import React from "react";
 
 const geografisDesa = {
-  deskripsi: `Desa Indah terletak di wilayah dataran rendah dengan ketinggian rata-rata 150 mdpl. Wilayah ini memiliki kondisi geografis yang strategis karena dilewati oleh jalur utama kabupaten dan memiliki akses yang mudah ke pusat kecamatan.`,
+  deskripsi: `
+    Desa Wuwuk secara geografis terletak di Kecamatan Tareran, Kabupaten Minahasa Selatan, Provinsi Sulawesi Utara. 
+    Memiliki luas wilayah sekitar 312 hektar dan berada di dataran rendah dengan ketinggian sekitar 300 meter di atas permukaan laut. 
+    Letak geografis yang strategis mendukung potensi pengembangan sektor pertanian dan permukiman masyarakat.
+  `,
   batasWilayah: {
-    utara: "Desa Suka Maju",
-    selatan: "Desa Harapan",
-    timur: "Desa Sejahtera",
-    barat: "Hutan Lindung Gunung Lestari",
+    utara: "Desa Wuwuk Barat",
+    selatan: "Desa Lansot",
+    timur: "Desa Pungkol",
+    barat: "Desa Rumoong Atas Dua",
   },
-  luas: "1.200 Ha",
+  luas: "312 Ha",
 };
 
 export default function GeografisPage() {
@@ -51,34 +55,15 @@ export default function GeografisPage() {
         </div>
 
         <div className="w-full h-[400px] rounded-xl overflow-hidden shadow-lg">
-          {/* <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15936.765476891006!2d124.7700002!3d-1.2682005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3287761234567890%3ADesa%20Seretan!5e0!3m2!1sid!2sid!4v1234567890123"
-            width="100%"
-            height="100%"
-            style={{ border: 0 }}
-            allowFullScreen
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          /> */}
-
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15955.505794536271!2d124.8382904944199!3d1.2449889311280335!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3287400143ab3c8f%3A0xcb451b0d7a0fbebe!2sTalikuran%2C%20Kec.%20Remboken%2C%20Kabupaten%20Minahasa%2C%20Sulawesi%20Utara!5e0!3m2!1sid!2sid!4v1753286898509!5m2!1sid!2sid"
-            width="100%"
-            height="100%"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31911.091745160014!2d124.70112449999999!3d1.23834895!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x328742b95ec2d351%3A0xcae804f52ab7af18!2sWuwuk%2C%20Kec.%20Tareran%2C%20Kabupaten%20Minahasa%20Selatan%2C%20Sulawesi%20Utara!5e0!3m2!1sid!2sid!4v1753457190511!5m2!1sid!2sid"
+            width="600"
+            height="450"
             style={{ border: 0 }}
             allowFullScreen
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
           ></iframe>
-
-          {/* <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31647.474393612107!2d124.91106643098247!3d1.3144345790890997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3287c58a590dc9c7%3A0x45c8cde2fc6935ed!2sMinahasa%2C%20Sulawesi%20Utara!5e0!3m2!1sen!2sid!4v1623048258702!5m2!1sen!2sid"
-            width="100%"
-            height="100%"
-            allowFullScreen
-            loading="lazy"
-            style={{ border: 0 }}
-          /> */}
         </div>
       </div>
     </div>

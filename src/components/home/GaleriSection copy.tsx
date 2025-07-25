@@ -9,10 +9,10 @@ import Link from "next/link";
 const galeriDesa = [
   { src: "/images/galeri/1.jpg", alt: "Kegiatan Gotong Royong" },
   { src: "/images/galeri/2.jpg", alt: "Panen Raya" },
-  { src: "/images/galeri/1.jpg", alt: "Perayaan Hari Kemerdekaan" },
-  { src: "/images/galeri/2.jpg", alt: "Wisata Alam Desa" },
-  { src: "/images/galeri/1.jpg", alt: "Kerajinan Warga" },
-  { src: "/images/galeri/2.jpg", alt: "Pemandangan Alam" },
+  { src: "/images/galeri/3.jpg", alt: "Perayaan Hari Kemerdekaan" },
+  { src: "/images/galeri/4.jpg", alt: "Wisata Alam Desa" },
+  { src: "/images/galeri/5.jpg", alt: "Kerajinan Warga" },
+  { src: "/images/galeri/6.jpg", alt: "Pemandangan Alam" },
 ];
 
 export default function GaleriDesaSection() {
@@ -59,7 +59,7 @@ export default function GaleriDesaSection() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
           {galeriDesa.map((item, index) => (
             <div
               key={index}
@@ -71,7 +71,7 @@ export default function GaleriDesaSection() {
                 alt={item.alt}
                 width={600}
                 height={400}
-                className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
               />
               <div className="absolute bottom-0 left-0 right-0 bg-gray-600 bg-opacity-40 text-white text-xs text-center py-2.5">
                 {item.alt}

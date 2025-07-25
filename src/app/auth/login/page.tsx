@@ -67,13 +67,16 @@ export default function LoginPage() {
         {/* Logo & Nama Desa */}
         <div className="flex flex-col items-center mb-6">
           <Image
-            src="/images/logo-desa.jpeg"
+            src="/logo-desa.png"
             alt="Logo Desa"
             width={60}
             height={60}
             className="mb-2"
           />
-          <h1 className="text-2xl font-bold text-green-800">Desa Seretan</h1>
+          <h1 className="text-2xl font-bold text-green-800">Desa Wuwuk</h1>
+          <p className="text-base text-gray-600">
+            Kec. Tareran, Kab. Minahasa Selatan
+          </p>
         </div>
 
         {/* Form */}
@@ -88,6 +91,9 @@ export default function LoginPage() {
             <input
               {...register("email")}
               type="email"
+              name="email"
+              autoComplete="email"
+              placeholder="Masukkan email anda"
               className="w-full px-4 py-2 border rounded"
             />
             {errors.email && (
@@ -108,6 +114,9 @@ export default function LoginPage() {
               <input
                 {...register("password")}
                 type={showPassword ? "text" : "password"}
+                name="password"
+                autoComplete="current-password"
+                placeholder="Masukkan password anda"
                 className="w-full px-4 py-2 border rounded pr-10"
               />
               <button

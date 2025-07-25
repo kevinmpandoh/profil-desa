@@ -42,9 +42,20 @@ export default function Header() {
     <header className="bg-white shadow sticky top-0 z-50">
       <div className="container mx-auto max-w-7xl px-4 py-6 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
-          <img src="/logo-desa.jpeg" alt="Logo Desa" className="h-10 w-10" />
-          <span className="text-xl font-bold text-green-700">Desa Contoh</span>
+        <Link href="/" className="flex items-center gap-2.5">
+          <Image
+            src="/logo-desa.png"
+            alt="Logo Desa"
+            width={24}
+            height={24}
+            className="h-12 w-12 object-contain"
+          />
+          <div className="leading-tight">
+            <h3 className="text-xl font-bold text-green-700">Desa Wuwuk</h3>
+            <p className="text-sm text-gray-600">
+              Kec. Tombariri, Kab. Minahasa Selatan
+            </p>
+          </div>
         </Link>
 
         <div className="flex gap-6 items-center">
