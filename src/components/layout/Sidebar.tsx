@@ -282,29 +282,27 @@ const AppSidebar: React.FC = () => {
       <div className={`py-8 flex justify-center`}>
         <Link href="/">
           {isExpanded || isHovered || isMobileOpen ? (
-            <>
+            <div className="flex flex-col justify-center items-center">
               <Image
                 className="dark:hidden"
-                src="/images/logo-desa.jpeg"
+                src="/logo-desa.png"
                 alt="Logo"
                 width={48}
                 height={48}
               />
               <Image
                 className="hidden dark:block"
-                src="/logos/Logo-Stay-Kost-Dark.svg"
+                src="/logo-desa.png"
                 alt="Logo"
                 width={48}
                 height={48}
               />
-            </>
+              <h2 className="text-center text-2xl font-semibold text-green-700 mx-auto">
+                Desa Wuwuk
+              </h2>
+            </div>
           ) : (
-            <Image
-              src="/images/logo-desa.jpeg"
-              alt="Logo"
-              width={32}
-              height={32}
-            />
+            <Image src="/logo-desa.png" alt="Logo" width={32} height={32} />
           )}
         </Link>
       </div>

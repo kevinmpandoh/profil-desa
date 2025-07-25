@@ -82,7 +82,7 @@ export default function Header() {
                     ["Visi & Misi", "/profil/visi-misi"],
                     ["Sejarah", "/profil/sejarah"],
                     ["Geografis", "/profil/geografis"],
-                    ["Ekonomi", "/profil/ekonomi"],
+                    // ["Ekonomi", "/profil/ekonomi"],
                     ["Demografis", "/profil/demografis"],
                   ].map(([label, href]) => (
                     <Link
@@ -181,7 +181,7 @@ export default function Header() {
                 ["Visi & Misi", "/profil/visi-misi"],
                 ["Sejarah", "/profil/sejarah"],
                 ["Geografis", "/profil/geografis"],
-                ["Ekonomi", "/profil/ekonomi"],
+                // ["Ekonomi", "/profil/ekonomi"],
                 ["Demografis", "/profil/demografis"],
               ].map(([label, href]) => (
                 <Link key={href} href={href} className="block py-1">

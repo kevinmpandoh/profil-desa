@@ -44,7 +44,16 @@ export default function VisiMisiPage() {
         <CardContent>
           {visiContent ? (
             <div className="prose max-h-[300px] overflow-auto p-2 border rounded">
-              <LexicalComposer initialConfig={{ editorState: visiContent }}>
+              <LexicalComposer
+                initialConfig={{
+                  namespace: "visi-misi-editor",
+                  editorState: misiContent,
+                  onError: (error) => {
+                    console.error(error);
+                  },
+                  editable: false,
+                }}
+              >
                 <VisiMisiModal.ReadOnlyEditor />
               </LexicalComposer>
             </div>
@@ -81,7 +90,16 @@ export default function VisiMisiPage() {
         <CardContent>
           {misiContent ? (
             <div className="prose max-h-[300px] overflow-auto p-2 border rounded">
-              <LexicalComposer initialConfig={{ editorState: misiContent }}>
+              <LexicalComposer
+                initialConfig={{
+                  namespace: "visi-misi-editor",
+                  editorState: misiContent,
+                  onError: (error) => {
+                    console.error(error);
+                  },
+                  editable: false,
+                }}
+              >
                 <VisiMisiModal.ReadOnlyEditor />
               </LexicalComposer>
             </div>

@@ -6,6 +6,7 @@ import PotensiDesaSection from "@/components/home/PotensiDesaSection";
 import GaleriSection from "@/components/home/GaleriSection";
 import KontakSection from "@/components/home/KontakSection";
 import StatistikPendudukSection from "@/components/home/StatistikPendudukSection";
+import LayananPublikSection from "@/components/home/LayananPublic";
 
 export default function HomePage() {
   return (
@@ -15,6 +16,7 @@ export default function HomePage() {
       <StatistikPendudukSection />
       <PerangkatDesaSection />
       <PotensiDesaSection />
+      <LayananPublikSection />
       <GaleriSection />
       <KontakSection />
     </main>
