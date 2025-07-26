@@ -30,12 +30,12 @@ export default function PotensiDesaSection() {
     <section className="bg-white py-16">
       <div className="container max-w-7xl mx-auto px-4 lg:px-6">
         <div className="flex justify-between items-center mb-10">
-          <h2 className="text-2xl md:text-3xl font-bold text-green-700">
+          <h2 className="text-2xl md:text-3xl font-bold text-brand-600">
             Potensi Desa
           </h2>
           <Link
             href="/potensi-desa"
-            className="text-green-600 hover:underline font-medium"
+            className="text-brand-600 hover:underline font-medium"
           >
             Lihat Semua →
           </Link>

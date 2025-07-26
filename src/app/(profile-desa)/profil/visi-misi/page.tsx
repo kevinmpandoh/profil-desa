@@ -35,17 +35,17 @@ const misiHTML = `
 export default function VisiMisiDesaPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-16">
-      <h1 className="text-3xl md:text-4xl font-bold text-center text-green-800 mb-12">
+      <h1 className="text-3xl md:text-4xl font-bold text-center text-brand-600 mb-12">
         Visi dan Misi Desa Wuwuk
       </h1>
 
       {/* Visi */}
-      <Card className="mb-8 shadow-lg border-green-200">
+      <Card className="mb-8 shadow-lg border-brand-200">
         <CardContent className="p-6">
-          <h2 className="text-2xl font-semibold text-green-700 mb-3">Visi</h2>
+          <h2 className="text-2xl font-semibold text-brand-700 mb-3">Visi</h2>
           <div className="text-gray-700 leading-relaxed text-justify">
             <div
-              className="prose prose-green max-w-none text-justify"
+              className="prose prose-brand max-w-none text-justify"
               dangerouslySetInnerHTML={{ __html: visiHTML }}
             />
           </div>
@@ -53,11 +53,11 @@ export default function VisiMisiDesaPage() {
       </Card>
 
       {/* Misi */}
-      <Card className="shadow-lg border-green-200">
+      <Card className="shadow-lg border-brand-200">
         <CardContent className="p-6">
-          <h2 className="text-2xl font-semibold text-green-700 mb-3">Misi</h2>
+          <h2 className="text-2xl font-semibold text-brand-700 mb-3">Misi</h2>
           <div
-            className="prose prose-green max-w-none text-justify"
+            className="prose prose-brand max-w-none text-justify"
             dangerouslySetInnerHTML={{ __html: misiHTML }}
           />
         </CardContent>

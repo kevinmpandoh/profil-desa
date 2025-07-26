@@ -33,7 +33,7 @@ export default function AdminDashboardHome() {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between">
             <CardTitle>Potensi Desa</CardTitle>
-            <Landmark className="text-green-500" />
+            <Landmark className="text-brand-500" />
           </CardHeader>
           <CardContent>
             <p className="text-2xl font-bold">7</p>

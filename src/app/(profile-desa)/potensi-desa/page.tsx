@@ -26,7 +26,7 @@ const potensiList = [
 const PotensiPage = () => {
   return (
     <div className="max-w-6xl mx-auto px-4 py-10">
-      <h1 className="text-3xl font-bold mb-6 text-green-700 text-center">
+      <h1 className="text-3xl font-bold mb-6 text-brand-600 text-center">
         Potensi Desa Wuwuk
       </h1>
       <p className="text-center max-w-3xl mx-auto text-gray-600 mb-10 leading-relaxed">

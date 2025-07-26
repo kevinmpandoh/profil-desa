@@ -21,7 +21,7 @@ const geografisDesa = {
 export default function GeografisPage() {
   return (
     <div className="max-w-6xl mx-auto px-4 py-16">
-      <h1 className="text-3xl font-bold text-center text-green-800 mb-12">
+      <h1 className="text-3xl font-bold text-center text-brand-600 mb-12">
         Geografis Desa
       </h1>
 
@@ -30,8 +30,8 @@ export default function GeografisPage() {
           <p className="text-gray-700 text-justify leading-relaxed mb-6">
             {geografisDesa.deskripsi}
           </p>
-          <div className="bg-green-50 p-4 rounded-lg border border-green-200">
-            <h2 className="text-lg font-semibold text-green-700 mb-3">
+          <div className="bg-brand-50 p-4 rounded-lg border border-brand-200">
+            <h2 className="text-lg font-semibold text-brand-700 mb-3">
               Batas Wilayah
             </h2>
             <ul className="space-y-1 text-gray-700">

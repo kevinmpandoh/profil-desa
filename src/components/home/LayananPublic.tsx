@@ -10,15 +10,15 @@ const layananPublik = [
   },
   {
     nama: "Gereja GMIM Anugerah Wuwuk",
-    gambar: "/images/layanan/gmim.jpg",
+    gambar: "/images/layanan/gereja.jpg",
   },
   {
     nama: "Gereja GPdI Victory Wuwuk",
-    gambar: "/images/layanan/gpdi.jpg",
+    gambar: "/images/layanan/gereja.jpg",
   },
   {
     nama: "Gereja Segala Bangsa Elyakim Wuwuk",
-    gambar: "/images/layanan/segala-bangsa.jpg",
+    gambar: "/images/layanan/gereja.jpg",
   },
 ];
 
@@ -26,7 +26,7 @@ export default function LayananPublikSection() {
   return (
     <section className="bg-white py-16">
       <div className="container max-w-6xl mx-auto px-4 lg:px-6">
-        <h2 className="text-2xl md:text-3xl font-bold text-green-700 text-center mb-10">
+        <h2 className="text-2xl md:text-3xl font-bold text-brand-600 text-center mb-10">
           Layanan Publik
         </h2>
 
@@ -38,7 +38,7 @@ export default function LayananPublikSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.15 }}
-              className="bg-green-50 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition"
+              className="bg-brand-50 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition"
             >
               <div className="relative h-48 w-full">
                 <Image

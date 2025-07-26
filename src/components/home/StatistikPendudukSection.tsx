@@ -5,16 +5,16 @@ export default function StatistikPendudukSection() {
   return (
     <section className="bg-gray-50 py-20">
       <div className="container max-w-7xl mx-auto px-4 lg:px-6 text-center">
-        <h2 className="text-3xl font-bold text-green-700 mb-10">
+        <h2 className="text-3xl font-bold text-brand-600 mb-10">
           Statistik Penduduk
         </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-10">
           {/* Laki-laki */}
           <div className="bg-white rounded-xl shadow p-6 flex flex-col items-center">
-            <Users className="text-green-600 w-12 h-12 mb-4" />
+            <Users className="text-brand-600 w-12 h-12 mb-4" />
             <h3 className="text-xl font-semibold text-gray-700">Laki-laki</h3>
-            <p className="text-2xl font-bold text-green-700 mt-2">435 Jiwa</p>
+            <p className="text-2xl font-bold text-brand-700 mt-2">435 Jiwa</p>
           </div>
 
           {/* Perempuan */}
@@ -26,17 +26,17 @@ export default function StatistikPendudukSection() {
 
           {/* Total */}
           <div className="bg-white rounded-xl shadow p-6 flex flex-col items-center">
-            <Users className="text-blue-600 w-12 h-12 mb-4" />
+            <Users className="text-success-600 w-12 h-12 mb-4" />
             <h3 className="text-xl font-semibold text-gray-700">
               Total Penduduk
             </h3>
-            <p className="text-2xl font-bold text-blue-700 mt-2">840 Jiwa</p>
+            <p className="text-2xl font-bold text-success-700 mt-2">840 Jiwa</p>
           </div>
         </div>
 
         <Link
           href="/profil/demografis"
-          className="inline-block bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition"
+          className="inline-block bg-brand-600 text-white px-6 py-3 rounded-lg hover:bg-brand-700 transition"
         >
           Lihat Selengkapnya
         </Link>

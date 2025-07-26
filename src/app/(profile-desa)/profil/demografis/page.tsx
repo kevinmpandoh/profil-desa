@@ -57,7 +57,7 @@ const dataPerWilayah = [
 export default function DemografiDesa() {
   return (
     <section className="py-16 px-4 md:px-8 lg:px-16">
-      <h2 className="text-3xl font-bold text-green-700 text-center mb-10">
+      <h2 className="text-3xl font-bold text-brand-600 text-center mb-10">
         Demografi Desa Wuwuk
       </h2>
 
@@ -71,7 +71,7 @@ export default function DemografiDesa() {
           <strong>405 jiwa</strong>, serta total <strong>299 KK</strong>.
         </p>
 
-        <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4 text-sm bg-green-50 border border-green-200 p-4 rounded-lg">
+        <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4 text-sm bg-brand-50 border border-brand-200 p-4 rounded-lg">
           <div>
             <p>
               <strong>Kode Wilayah:</strong> 710513 2008
@@ -111,7 +111,7 @@ export default function DemografiDesa() {
 
       {/* Grafik per Wilayah */}
       <div className="max-w-5xl mx-auto">
-        <h3 className="text-xl font-semibold text-green-800 text-center mb-6">
+        <h3 className="text-xl font-semibold text-brand-800 text-center mb-6">
           Distribusi Penduduk per Wilayah (Jaga)
         </h3>
         <div className="w-full h-[400px]">

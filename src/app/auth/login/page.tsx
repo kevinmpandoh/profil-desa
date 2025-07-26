@@ -73,7 +73,7 @@ export default function LoginPage() {
             height={60}
             className="mb-2"
           />
-          <h1 className="text-2xl font-bold text-green-800">Desa Wuwuk</h1>
+          <h1 className="text-2xl font-bold text-brand-600">Desa Wuwuk</h1>
           <p className="text-base text-gray-600">
             Kec. Tareran, Kab. Minahasa Selatan
           </p>
@@ -94,7 +94,7 @@ export default function LoginPage() {
               name="email"
               autoComplete="email"
               placeholder="Masukkan email anda"
-              className="w-full px-4 py-2 border rounded"
+              className="w-full px-4 py-2 border rounded "
             />
             {errors.email && (
               <p className="text-sm text-red-500 mt-1">
@@ -146,7 +146,7 @@ export default function LoginPage() {
 
         {/* Link Kembali */}
         <div className="mt-8 text-center">
-          <Link href="/" className="text-md text-green-700 hover:underline">
+          <Link href="/" className="text-md text-brand-700 hover:underline">
             Kembali ke Beranda
           </Link>
         </div>

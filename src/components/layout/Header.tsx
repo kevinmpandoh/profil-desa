@@ -10,6 +10,7 @@ import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
 import { logout } from "@/services/auth.service";
 import { toast } from "sonner";
+import { Button } from "../ui/button";
 
 export default function Header() {
   const pathname = usePathname();
@@ -24,7 +25,7 @@ export default function Header() {
   const adminName = user?.name || "Admin Desa";
 
   const isActive = (path: string) =>
-    pathname === path ? "text-green-700 font-semibold" : "text-gray-700";
+    pathname === path ? "text-brand-700 font-semibold" : "text-gray-700";
 
   const mutation = useMutation({
     mutationFn: logout,
@@ -51,7 +52,7 @@ export default function Header() {
             className="h-12 w-12 object-contain"
           />
           <div className="leading-tight">
-            <h3 className="text-xl font-bold text-green-700">Desa Wuwuk</h3>
+            <h3 className="text-xl font-bold text-brand-600">Desa Wuwuk</h3>
             <p className="text-sm text-gray-600">
               Kec. Tombariri, Kab. Minahasa Selatan
             </p>
@@ -61,16 +62,16 @@ export default function Header() {
         <div className="flex gap-6 items-center">
           {/* Desktop Menu */}
           <nav className="hidden md:flex items-center gap-6">
-            <Link href="/" className={`${isActive("/")} hover:text-green-600`}>
+            <Link href="/" className={`${isActive("/")} hover:text-brand-600`}>
               Beranda
             </Link>
 
             <div className="relative">
               <button
                 onClick={() => setShowDropdown(!showDropdown)}
-                className={`flex items-center gap-1 hover:text-green-600 ${
+                className={`flex items-center gap-1 hover:text-brand-600 ${
                   pathname.startsWith("/profil")
-                    ? "text-green-700 font-semibold"
+                    ? "text-brand-700 font-semibold"
                     : "text-gray-700"
                 }`}
               >
@@ -99,13 +100,13 @@ export default function Header() {
 
             <Link
               href="/pemerintah-desa"
-              className={`${isActive("/pemerintah-desa")} hover:text-green-600`}
+              className={`${isActive("/pemerintah-desa")} hover:text-brand-600`}
             >
               Pemerintah Desa
             </Link>
             <Link
               href="/potensi-desa"
-              className={`${isActive("/potensi-desa")} hover:text-green-600`}
+              className={`${isActive("/potensi-desa")} hover:text-brand-600`}
             >
               Potensi Desa
             </Link>
@@ -114,12 +115,15 @@ export default function Header() {
           {/* Kanan: Login atau Avatar */}
           <div className="hidden md:flex items-center gap-3 relative">
             {!isLoggedIn ? (
-              <Link
-                href="/auth/login"
-                className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition"
-              >
-                Login
-              </Link>
+              <Button size={"lg"}>
+                <Link
+                  href="/auth/login"
+
+                  // className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition"
+                >
+                  Login
+                </Link>
+              </Button>
             ) : (
               <div className="relative">
                 <button
@@ -198,12 +202,14 @@ export default function Header() {
           </Link>
 
           {!isLoggedIn ? (
-            <Link
-              href="/auth/login"
-              className="block mt-2 bg-green-600 text-white px-4 py-2 rounded text-center"
-            >
-              Login
-            </Link>
+            <Button>
+              <Link
+                href="/auth/login"
+                // className="block mt-2 bg-green-600 text-white px-4 py-2 rounded text-center"
+              >
+                Login
+              </Link>
+            </Button>
           ) : (
             <div className="mt-3 flex items-center gap-2 px-2">
               <Image

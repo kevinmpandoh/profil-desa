@@ -39,16 +39,16 @@
   --color-black: #101828;
 
   --color-brand-25: #f2f7ff;
-  --color-brand-50: #ecf3ff;
-  --color-brand-100: #dde9ff;
-  --color-brand-200: #c2d6ff;
-  --color-brand-300: #9cb9ff;
-  --color-brand-400: #7592ff;
-  --color-brand-500: #465fff;
-  --color-brand-600: #3641f5;
-  --color-brand-700: #2a31d8;
-  --color-brand-800: #252dae;
-  --color-brand-900: #262e89;
+  --color-brand-50: #e6f6f4;
+  --color-brand-100: #b0e4dd;
+  --color-brand-200: #8ad7cc;
+  --color-brand-300: #54c5b5;
+  --color-brand-400: #33baa7;
+  --color-brand-500: #00a991;
+  --color-brand-600: #009a84;
+  --color-brand-700: #007867;
+  --color-brand-800: #005d50;
+  --color-brand-900: #00473d;
   --color-brand-950: #161950;
 
   --color-blue-light-25: #f5fbff;
@@ -210,7 +210,7 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: #3c50e0;
+  --primary: #00a991;
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);

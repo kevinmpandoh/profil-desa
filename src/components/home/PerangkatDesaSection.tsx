@@ -31,12 +31,12 @@ export default function PerangkatDesaSection() {
     <section className="bg-gray-50 py-16">
       <div className="container max-w-7xl mx-auto px-4 lg:px-6">
         <div className="flex justify-between items-center mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold text-green-700">
+          <h2 className="text-2xl md:text-3xl font-bold text-brand-600">
             Perangkat Desa
           </h2>
           <Link
             href="/pemerintah-desa"
-            className="text-green-600 hover:underline font-medium"
+            className="text-brand-600 hover:underline font-medium"
           >
             Lihat Semua →
           </Link>

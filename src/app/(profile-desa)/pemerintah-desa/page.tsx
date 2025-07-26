@@ -38,7 +38,7 @@ const perangkatDesa = [
 const PemerintahDesa = () => {
   return (
     <section className="py-16 px-4 md:px-8 lg:px-16">
-      <h2 className="text-3xl font-bold text-green-700 text-center mb-12">
+      <h2 className="text-3xl font-bold text-brand-600 text-center mb-12">
         Pemerintah Desa
       </h2>
 
@@ -60,7 +60,7 @@ const PemerintahDesa = () => {
               <h4 className="text-lg font-semibold text-gray-800">
                 {perangkat.nama}
               </h4>
-              <p className="text-sm text-green-700">{perangkat.jabatan}</p>
+              <p className="text-sm text-brand-700">{perangkat.jabatan}</p>
             </div>
           </div>
         ))}

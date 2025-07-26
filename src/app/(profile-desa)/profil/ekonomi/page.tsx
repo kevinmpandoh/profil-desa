@@ -41,13 +41,13 @@ const EkonomiDesa = () => {
 
   return (
     <section className="py-16 px-4 md:px-8 lg:px-16">
-      <h2 className="text-3xl font-bold mb-10 text-center text-green-700">
+      <h2 className="text-3xl font-bold mb-10 text-center text-brand-600">
         Ekonomi Desa
       </h2>
 
       {/* Diagram Pie */}
       <div className="max-w-3xl mx-auto mb-12">
-        <h3 className="text-xl font-semibold mb-4 text-center text-green-800">
+        <h3 className="text-xl font-semibold mb-4 text-center text-brand-800">
           Distribusi Sektor Ekonomi Masyarakat
         </h3>
         <div className="w-full h-[300px]">
@@ -81,9 +81,9 @@ const EkonomiDesa = () => {
         {dataEkonomi.map((item, index) => (
           <div
             key={index}
-            className="bg-white shadow-md rounded-lg p-6 border-l-4 border-green-600"
+            className="bg-white shadow-md rounded-lg p-6 border-l-4 border-brand-600"
           >
-            <h3 className="text-xl font-semibold mb-2 text-green-800">
+            <h3 className="text-xl font-semibold mb-2 text-brand-800">
               {item.sektor}
             </h3>
             <p className="text-base leading-relaxed">{item.deskripsi}</p>

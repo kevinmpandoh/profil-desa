@@ -46,10 +46,10 @@ export default function HeroSection() {
         <div className="order-2 md:order-1 relative z-10 p-6">
           {/* Ornamen background */}
           <div className="absolute inset-0 md:-left-8 md:-top-8 -z-10 hidden md:block">
-            <div className="w-full h-full bg-green-50 rounded-xl rotate-2 shadow-md" />
+            <div className="w-full h-full bg-brand-50 rounded-xl rotate-2 shadow-md" />
           </div>
 
-          <h1 className="text-3xl md:text-4xl font-bold text-green-700 mb-4">
+          <h1 className="text-3xl md:text-4xl font-bold text-brand-600 mb-4">
             Selamat Datang di Website Resmi Desa Wuwuk
           </h1>
           <p className="text-gray-500 text-sm mb-2">

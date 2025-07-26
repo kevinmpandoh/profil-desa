@@ -22,7 +22,7 @@ const kontakInfo = [
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-800 text-white pt-12">
+    <footer className="bg-brand-800 text-white pt-12">
       <div className="container max-w-7xl mx-auto px-4 lg:px-6 grid grid-cols-1 md:grid-cols-3 gap-10 pb-10">
         {/* Kolom 1: Logo & Deskripsi */}
         <div>
@@ -73,7 +73,7 @@ export default function Footer() {
       </div>
 
       {/* Footer Bawah */}
-      <div className="bg-gray-900 text-center text-sm py-4 text-gray-300">
+      <div className="bg-brand-900 text-center text-sm py-4 text-gray-300">
         &copy; {new Date().getFullYear()} Dibuat oleh Mahasiswa KKT UNSRAT
       </div>
     </footer>

@@ -297,7 +297,7 @@ const AppSidebar: React.FC = () => {
                 width={48}
                 height={48}
               />
-              <h2 className="text-center text-2xl font-semibold text-green-700 mx-auto">
+              <h2 className="text-center text-2xl font-semibold text-brand-500 mx-auto">
                 Desa Wuwuk
               </h2>
             </div>
