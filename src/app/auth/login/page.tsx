@@ -54,10 +54,10 @@ export default function LoginPage() {
       {/* Background */}
       <div className="absolute inset-0 -z-10">
         <Image
-          src="/images/slider1.jpg"
+          src="/bg-login.jpg"
           alt="Background"
-          width={100}
-          height={100}
+          width={500}
+          height={500}
           className="w-full h-full object-cover brightness-50"
         />
       </div>

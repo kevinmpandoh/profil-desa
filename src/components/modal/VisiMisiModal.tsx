@@ -12,6 +12,13 @@ import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import { EditorRefPlugin } from "@lexical/react/LexicalEditorRefPlugin";
 import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { EditorState, LexicalEditor } from "lexical";
+import dynamic from "next/dynamic";
+const RichTextEditor = dynamic(
+  () => import("@/components/editor/RichTextEditor"),
+  {
+    ssr: false,
+  }
+);
 
 interface Props {
   open: boolean;
@@ -25,6 +32,7 @@ export const VisiMisiModal: React.FC<Props> & {
   ReadOnlyEditor: React.FC;
 } = ({ open, onClose, onSave, type, initialContent }) => {
   const editorRef = useRef<LexicalEditor | null>(null);
+  let refdiv = useRef(null);
 
   const config = {
     namespace: "VisiMisiEditor",
@@ -54,7 +62,9 @@ export const VisiMisiModal: React.FC<Props> & {
           </DialogTitle>
         </DialogHeader>
 
-        <LexicalComposer initialConfig={config}>
+        {/* <RichTextEditor /> */}
+
+        {/* <LexicalComposer initialConfig={config}>
           <div className="border p-3 rounded min-h-[200px] max-h-[400px] overflow-auto">
             <RichTextPlugin
               contentEditable={
@@ -70,7 +80,7 @@ export const VisiMisiModal: React.FC<Props> & {
             <HistoryPlugin />
             <EditorRefPlugin editorRef={editorRef} />
           </div>
-        </LexicalComposer>
+        </LexicalComposer> */}
 
         <div className="flex justify-end gap-2 mt-4">
           <Button variant="outline" onClick={onClose}>

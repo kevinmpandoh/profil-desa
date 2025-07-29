@@ -1,24 +1,30 @@
-import axios from "@/lib/axios"; // asumsi axios instance
+// services/sejarah.service.ts
+import { createClient } from "@/utils/supabase/client";
 
-export interface Sejarah {
-  id: string;
-  gambar_url: string;
-  isi: string;
-}
+// src/services/sejarah.service.ts
+import api from "@/lib/axios";
 
-export const getSejarah = async (): Promise<Sejarah | null> => {
-  console.log("Fetching sejarah desa...");
-  // Simulasi dummy data
-  return {
-    id: "1",
-    gambar_url: "https://source.unsplash.com/400x200/?village",
-    isi: "<p>Ini adalah sejarah desa yang panjang dan lengkap...</p>",
-  };
+const get = async () => {
+  const response = await api.get("/sejarah");
+  return response.data.data; // ambil hanya data
 };
-export const createSejarah = (data: any) => axios.post("/sejarah", data);
-export const updateSejarah = (id: string, data: any) =>
-  axios.put(`/sejarah/${id}`, data);
-export const deleteSejarah = async (id: string) => {
-  console.log("Menghapus sejarah dengan ID:", id);
-  return { success: true };
+
+const update = async (payload: { konten: string; gambar: string | null }) => {
+  const response = await api.put("/sejarah", payload);
+  return response.data;
 };
+
+export default {
+  get,
+  update,
+};
+
+// export const upsertSejarah = async (konten: string) => {
+//   const supabase = await createClient();
+//   return await supabase.from("sejarah-desa").upsert([{ konten }]);
+// };
+
+// export const deleteSejarah = async (id: number) => {
+//   const supabase = await createClient();
+//   return await supabase.from("sejarah-desa").delete().eq("id", id);
+// };

@@ -1,8 +1,19 @@
 "use client";
 
+import { getSettings } from "@/services/settings.service";
+import { useQuery } from "@tanstack/react-query";
 import { Mail, MapPin, Phone } from "lucide-react";
 
 export default function KontakSection() {
+  const { data, isLoading } = useQuery({
+    queryKey: ["settings"],
+    queryFn: getSettings,
+  });
+
+  if (isLoading) {
+    return <h1>Loading...</h1>;
+  }
+
   return (
     <section className="bg-brand-50 py-16">
       <div className="container max-w-7xl mx-auto px-4 lg:px-6">
@@ -18,8 +29,8 @@ export default function KontakSection() {
                 <div>
                   <p className="font-semibold">Alamat</p>
                   <p>
-                    Desa Wuwuk, Kecamatan Tareran, Kabupaten Minahasa Selatan,
-                    Sulawesi Utara 95353
+                    {data.alamat ||
+                      "Desa Wuwuk, Kecamatan Tareran, Kabupaten Minahasa Selatan, Sulawesi Utara 95353"}
                   </p>
                 </div>
               </div>
@@ -28,7 +39,7 @@ export default function KontakSection() {
                 <Phone className="text-brand-700 w-6 h-6" />
                 <div>
                   <p className="font-semibold">Telepon</p>
-                  <p>+62 812-3456-7890</p>
+                  <p>{data.telepon ?? "-"}</p>
                 </div>
               </div>
 
@@ -36,7 +47,7 @@ export default function KontakSection() {
                 <Mail className="text-brand-700 w-6 h-6" />
                 <div>
                   <p className="font-semibold">Email</p>
-                  <p>desaku@example.com</p>
+                  <p>{data.email ?? "-"}</p>
                 </div>
               </div>
             </div>

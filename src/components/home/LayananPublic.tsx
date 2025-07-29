@@ -2,27 +2,20 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-
-const layananPublik = [
-  {
-    nama: "Balai Desa Wuwuk",
-    gambar: "/images/layanan/balai-desa.jpg",
-  },
-  {
-    nama: "Gereja GMIM Anugerah Wuwuk",
-    gambar: "/images/layanan/gereja.jpg",
-  },
-  {
-    nama: "Gereja GPdI Victory Wuwuk",
-    gambar: "/images/layanan/gereja.jpg",
-  },
-  {
-    nama: "Gereja Segala Bangsa Elyakim Wuwuk",
-    gambar: "/images/layanan/gereja.jpg",
-  },
-];
+import layananPublikService from "@/services/layanan-publik.service";
+import { useQuery } from "@tanstack/react-query";
 
 export default function LayananPublikSection() {
+  const { data = [], isLoading } = useQuery({
+    queryKey: ["layanan-publik"],
+    queryFn: layananPublikService.get,
+  });
+
+  if (isLoading) {
+    return <h1>Loading...</h1>;
+  }
+  const layananPublik = data.slice(0, 4);
+
   return (
     <section className="bg-white py-16">
       <div className="container max-w-6xl mx-auto px-4 lg:px-6">
@@ -31,7 +24,7 @@ export default function LayananPublikSection() {
         </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {layananPublik.map((item, index) => (
+          {layananPublik.map((item: any, index: number) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
@@ -42,14 +35,16 @@ export default function LayananPublikSection() {
             >
               <div className="relative h-48 w-full">
                 <Image
-                  src={item.gambar}
-                  alt={item.nama}
+                  src={item.image_url}
+                  alt={item.keterangan}
                   fill
                   className="object-cover"
                 />
               </div>
               <div className="p-4 text-center">
-                <p className="text-lg font-medium text-gray-800">{item.nama}</p>
+                <p className="text-lg font-medium text-gray-800">
+                  {item.keterangan}
+                </p>
               </div>
             </motion.div>
           ))}

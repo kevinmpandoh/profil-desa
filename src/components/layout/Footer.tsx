@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { useQuery } from "@tanstack/react-query";
+import { getSettings } from "@/services/settings.service";
 
 const footerLinks = [
   { label: "Beranda", href: "/" },
@@ -11,16 +13,24 @@ const footerLinks = [
   { label: "Kontak", href: "#kontak" },
 ];
 
-const kontakInfo = [
-  {
-    title: "Alamat",
-    value: "Desa Wuwuk, Kec. Tareran, Minahasa Selatan, Sulawesi Utara 95353",
-  },
-  { title: "Email", value: "pemdeswuwuk@example.com" }, // ganti jika ada email resmi
-  { title: "Telepon", value: "+62 812-3456-7890" }, // ganti atau kosongkan jika tidak ada
-];
-
 export default function Footer() {
+  const { data, isLoading } = useQuery({
+    queryKey: ["settings"],
+    queryFn: getSettings,
+  });
+
+  if (isLoading) {
+    return <h1>Loading...</h1>;
+  }
+
+  const kontakInfo = [
+    {
+      title: "Alamat",
+      value: data.alamat,
+    },
+    { title: "Email", value: data.email }, // ganti jika ada email resmi
+    { title: "Telepon", value: data.telepon }, // ganti atau kosongkan jika tidak ada
+  ];
   return (
     <footer className="bg-brand-800 text-white pt-12">
       <div className="container max-w-7xl mx-auto px-4 lg:px-6 grid grid-cols-1 md:grid-cols-3 gap-10 pb-10">
@@ -63,9 +73,9 @@ export default function Footer() {
             {kontakInfo.map((item, idx) => (
               <li key={idx}>
                 <span className="block font-medium text-white">
-                  {item.title}
+                  {item.title || "-"}
                 </span>
-                <span>{item.value}</span>
+                <span>{item.value || "-"}</span>
               </li>
             ))}
           </ul>
@@ -74,7 +84,7 @@ export default function Footer() {
 
       {/* Footer Bawah */}
       <div className="bg-brand-900 text-center text-sm py-4 text-gray-300">
-        &copy; {new Date().getFullYear()} Dibuat oleh Mahasiswa KKT UNSRAT
+        &copy; {new Date().getFullYear()} Dibuat oleh Mahasiswa KKT 143 UNSRAT
       </div>
     </footer>
   );

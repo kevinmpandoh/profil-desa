@@ -3,29 +3,19 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-
-const potensi = [
-  {
-    title: "Captikus - Budaya Lokal",
-    image: "/images/potensi/cap-tikus.webp",
-    description:
-      "Minuman tradisional hasil fermentasi yang menjadi simbol kearifan lokal Desa Wuwuk, dikenal luas di Sulawesi Utara.",
-  },
-  {
-    title: "Pertanian",
-    image: "/images/potensi/pertanian.jpg",
-    description:
-      "Komoditas utama seperti padi, kopra, nilam, dan cengkih memiliki nilai ekonomis tinggi dan potensi pasar luas.",
-  },
-  {
-    title: "UMKM & Kuliner",
-    image: "/images/potensi/umkm.jpg",
-    description:
-      "Usaha masyarakat seperti kue curut, pengolahan santan, dan sayur pangi menjadi kekuatan ekonomi desa yang unik.",
-  },
-];
+import { useQuery } from "@tanstack/react-query";
+import potensiDesaService from "@/services/potensi-desa.service";
 
 export default function PotensiDesaSection() {
+  const { data, isLoading } = useQuery({
+    queryKey: ["potensi-desa"],
+    queryFn: potensiDesaService.get,
+  });
+
+  if (isLoading) {
+    return <h1>Loading...</h1>;
+  }
+  const potensiList = data.slice(0, 3);
   return (
     <section className="bg-white py-16">
       <div className="container max-w-7xl mx-auto px-4 lg:px-6">
@@ -42,7 +32,7 @@ export default function PotensiDesaSection() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {potensi.map((item, index) => (
+          {potensiList.map((item: any, index: number) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 30 }}
@@ -53,8 +43,8 @@ export default function PotensiDesaSection() {
             >
               <div className="group relative w-full h-48 overflow-hidden">
                 <Image
-                  src={item.image}
-                  alt={item.title}
+                  src={item.image_url}
+                  alt={item.judul}
                   layout="fill"
                   objectFit="cover"
                   className="transform group-hover:scale-110 transition-transform duration-500 ease-in-out"
@@ -62,9 +52,9 @@ export default function PotensiDesaSection() {
               </div>
               <div className="p-4">
                 <h3 className="text-xl font-semibold text-gray-800 mb-2">
-                  {item.title}
+                  {item.judul}
                 </h3>
-                <p className="text-gray-600 text-sm">{item.description}</p>
+                <p className="text-gray-600 text-sm">{item.deskripsi}</p>
               </div>
             </motion.div>
           ))}

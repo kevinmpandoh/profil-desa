@@ -38,26 +38,28 @@ export async function POST(req: Request) {
   const user = data.user;
 
   // Ambil data profile dari tabel "profiles"
-  const { data: profile, error: profileError } = await supabase
-    .from("users")
-    .select("name, avatar_url")
-    .eq("id", user.id)
-    .single();
+  // const { data: profile, error: profileError } = await supabase
+  //   .from("users")
+  //   .select("name, avatar_url")
+  //   .eq("id", user.id)
+  //   .single();
 
-  if (profileError) {
-    return NextResponse.json(
-      { message: "Gagal mengambil data profil" },
-      { status: 500 }
-    );
-  }
+  // if (profileError) {
+  //   return NextResponse.json(
+  //     { message: "Gagal mengambil data profil" },
+  //     { status: 500 }
+  //   );
+  // }
+
+  console.log(user, "USER");
 
   return NextResponse.json({
     message: "Login sukses",
     data: {
       id: user.id,
       email: user.email,
-      name: profile.name,
-      avatar_url: profile.avatar_url || "/avatar-default.png", // Ganti dengan URL default jika tidak ada
+      name: user.user_metadata.name || "Tanpa Nama",
+      avatar_url: "/profile-default.png", // Ganti dengan URL default jika tidak ada
     },
   });
 }

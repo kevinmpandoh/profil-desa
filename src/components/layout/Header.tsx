@@ -83,7 +83,6 @@ export default function Header() {
                     ["Visi & Misi", "/profil/visi-misi"],
                     ["Sejarah", "/profil/sejarah"],
                     ["Geografis", "/profil/geografis"],
-                    // ["Ekonomi", "/profil/ekonomi"],
                     ["Demografis", "/profil/demografis"],
                   ].map(([label, href]) => (
                     <Link
@@ -109,6 +108,12 @@ export default function Header() {
               className={`${isActive("/potensi-desa")} hover:text-brand-600`}
             >
               Potensi Desa
+            </Link>
+            <Link
+              href="/galeri-desa"
+              className={`${isActive("/galeri-desa")} hover:text-brand-600`}
+            >
+              Galeri Desa
             </Link>
           </nav>
 
@@ -143,7 +148,7 @@ export default function Header() {
                   <div className="absolute right-0 mt-2 w-56 px-2 py-4 bg-white border rounded shadow z-20">
                     <Link
                       href="/dashboard"
-                      className="flex items-center gap-2 px-4 py-2 hover:bg-gray-100 text-lg font-semibold text-gray-700"
+                      className="flex items-center gap-2 px-4 py-2 hover:bg-gray-100 text-base text-gray-700"
                     >
                       <LayoutDashboard size={16} />
                       Dashboard
@@ -151,7 +156,7 @@ export default function Header() {
                     <button
                       onClick={() => mutation.mutate()}
                       disabled={mutation.isPending}
-                      className="flex w-full items-center gap-2 px-4 py-2 hover:bg-gray-100 font-semibold text-lg text-gray-700"
+                      className="flex w-full items-center gap-2 px-4 py-2 hover:bg-gray-100 text-base text-gray-700"
                     >
                       <LogOut size={16} />
                       Logout
@@ -200,6 +205,9 @@ export default function Header() {
           <Link href="/potensi-desa" className="block py-2">
             Potensi Desa
           </Link>
+          <Link href="/galeri-desa" className="block py-2">
+            Potensi Desa
+          </Link>
 
           {!isLoggedIn ? (
             <Button>
@@ -211,23 +219,38 @@ export default function Header() {
               </Link>
             </Button>
           ) : (
-            <div className="mt-3 flex items-center gap-2 px-2">
-              <Image
-                src="/avatar-default.svg"
-                alt="Avatar"
-                width={28}
-                height={28}
-                className="rounded-full"
-              />
-              <span>{adminName}</span>
-              <button
+            <>
+              <div className="mt-3 flex items-center justify-between px-2 mb-4">
+                <div className="flex gap-2">
+                  <Image
+                    src="/avatar-default.svg"
+                    alt="Avatar"
+                    width={28}
+                    height={28}
+                    className="rounded-full"
+                  />
+                  <span>{adminName}</span>
+                </div>
+                <Button
+                  // onClick={() => mutation.mutate()}
+                  // disabled={mutation.isPending}
+                  variant={"outline"}
+                  size={"sm"}
+                  // className="text-base text-brand-600 ml-auto"
+                >
+                  <Link href={"/dashboard"}>Dashboard</Link>
+                </Button>
+              </div>
+              <Button
                 onClick={() => mutation.mutate()}
                 disabled={mutation.isPending}
-                className="text-sm text-red-600 ml-auto"
+                // className="text-sm text-red-600 ml-auto"
+                variant={"destructive"}
+                size={"sm"}
               >
                 Logout
-              </button>
-            </div>
+              </Button>
+            </>
           )}
         </div>
       )}

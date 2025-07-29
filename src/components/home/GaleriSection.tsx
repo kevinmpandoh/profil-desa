@@ -5,18 +5,16 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
-
-const galeriDesa = [
-  { src: "/images/galeri/1.jpg", alt: "Kegiatan Gotong Royong" },
-  { src: "/images/galeri/2.jpg", alt: "Panen Raya" },
-  { src: "/images/galeri/1.jpg", alt: "Perayaan Hari Kemerdekaan" },
-  { src: "/images/galeri/2.jpg", alt: "Wisata Alam Desa" },
-  { src: "/images/galeri/1.jpg", alt: "Kerajinan Warga" },
-  { src: "/images/galeri/2.jpg", alt: "Pemandangan Alam" },
-];
+import galeriService from "@/services/galeri.service";
+import { useQuery } from "@tanstack/react-query";
 
 export default function GaleriDesaSection() {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+
+  const { data: galeriDesa = [], isLoading } = useQuery({
+    queryKey: ["galeri-desa"],
+    queryFn: galeriService.get,
+  });
 
   const closeModal = () => setSelectedIndex(null);
   const showPrev = () =>
@@ -44,6 +42,12 @@ export default function GaleriDesaSection() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
+  const galeriList = galeriDesa.slice(0, 5);
+
+  if (isLoading) {
+    return <h1>Loading...</h1>;
+  }
+
   return (
     <section className="bg-white py-16">
       <div className="container max-w-7xl mx-auto px-4 lg:px-6">
@@ -60,21 +64,21 @@ export default function GaleriDesaSection() {
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-          {galeriDesa.map((item, index) => (
+          {galeriList.map((item: any, index: number) => (
             <div
               key={index}
               className="relative overflow-hidden rounded-xl group shadow cursor-pointer"
               onClick={() => setSelectedIndex(index)}
             >
               <Image
-                src={item.src}
-                alt={item.alt}
+                src={item.image_url}
+                alt={item.caption}
                 width={600}
                 height={400}
                 className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
               />
               <div className="absolute bottom-0 left-0 right-0 bg-gray-600 bg-opacity-40 text-white text-xs text-center py-2.5">
-                {item.alt}
+                {item.caption}
               </div>
             </div>
           ))}
@@ -118,14 +122,14 @@ export default function GaleriDesaSection() {
 
             <div className="relative max-w-4xl w-full">
               <Image
-                src={galeriDesa[selectedIndex].src}
-                alt={galeriDesa[selectedIndex].alt}
+                src={galeriDesa[selectedIndex].image_url}
+                alt={galeriDesa[selectedIndex].caption}
                 width={1000}
                 height={600}
                 className="w-full h-auto rounded-lg object-contain"
               />
               <p className="text-white text-center mt-4">
-                {galeriDesa[selectedIndex].alt}
+                {galeriDesa[selectedIndex].caption}
               </p>
             </div>
           </motion.div>

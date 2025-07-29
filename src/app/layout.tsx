@@ -5,7 +5,7 @@ import "leaflet/dist/leaflet.css";
 import Providers from "./providers";
 
 export const metadata: Metadata = {
-  title: "Profile Desa Wuwuk",
+  title: "Website Resmi Desa WUWUK",
   description:
     "Platform informasi dan profil desa untuk mendukung transparansi, partisipasi, dan pengembangan desa.",
 };

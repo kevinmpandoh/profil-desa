@@ -2,16 +2,20 @@
 import React, { useEffect, useRef, useState, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { Images } from "lucide-react";
 import { usePathname } from "next/navigation";
 import {
   Banknote,
+  BookCheck,
   ChevronDown,
   Ellipsis,
   Home,
+  Landmark,
   LayoutDashboard,
   PieChart,
   Settings,
   Star,
+  User,
 } from "lucide-react";
 import { useSidebarStore } from "@/app/stores/sidebar";
 
@@ -33,30 +37,40 @@ const navItems: NavItem[] = [
     icon: <Home />,
     name: "Profil Desa",
     subItems: [
-      { name: "Visi Misi Desa", path: "/dashboard/visi-misi" },
+      { name: "Visi Misi", path: "/dashboard/visi-misi" },
       {
         name: "Sejarah Desa",
         path: "/dashboard/sejarah",
       },
       { name: "Geografis", path: "/dashboard/geografis" },
-      { name: "Demografis", path: "/dashboard/demografis" },
-      { name: "Ekonomi", path: "/dashboard/ekonomi" },
+      { name: "Demografis", path: "/dashboard/demografi" },
+      { name: "Layanan Publik", path: "/dashboard/layanan-publik" },
     ],
   },
   {
     name: "Pemerintah Desa",
-    icon: <Banknote />,
+    icon: <Landmark />,
     path: "/dashboard/pemerintah-desa",
   },
   {
     name: "Potensi Desa",
-    icon: <Star />,
+    icon: <BookCheck />,
     path: "/dashboard/potensi-desa",
+  },
+  {
+    name: "Galeri",
+    icon: <Images />,
+    path: "/dashboard/galeri",
+  },
+  {
+    name: "Pengguna",
+    icon: <User />,
+    path: "/dashboard/users",
   },
   {
     name: "Pengaturan",
     icon: <Settings />,
-    path: "/dashboard/pengaturan/profile",
+    path: "/dashboard/pengaturan",
   },
 ];
 

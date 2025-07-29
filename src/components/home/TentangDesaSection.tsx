@@ -13,7 +13,7 @@ export default function TentangDesaSection() {
               alt="Tentang Desa"
               width={600}
               height={400}
-              className="w-full h-auto rounded-xl shadow-md object-cover"
+              className="w-full h-90 rounded-xl shadow-md object-cover"
             />
           </div>
           <div className="md:w-1/2 space-y-4">

@@ -1,32 +1,22 @@
 "use client";
 
+import { getPemerintahDesa } from "@/services/pemerintah-desa-service";
+import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
 
-const perangkatDesa = [
-  {
-    nama: "Johan Tambajong",
-    jabatan: "Kepala Desa",
-    foto: "/images/perangkat1.png",
-  },
-  {
-    nama: "Maria Manoppo",
-    jabatan: "Sekretaris Desa",
-    foto: "/images/perangkat1.png",
-  },
-  {
-    nama: "Yanto Rondonuwu",
-    jabatan: "Kaur Keuangan",
-    foto: "/images/perangkat1.png",
-  },
-  {
-    nama: "Siska Sumilat",
-    jabatan: "Kaur Umum",
-    foto: "/images/perangkat1.png",
-  },
-];
-
 export default function PerangkatDesaSection() {
+  const { data, isLoading } = useQuery({
+    queryKey: ["pemerintah-desa"],
+    queryFn: getPemerintahDesa,
+  });
+
+  if (isLoading) {
+    return <h1>Loading...</h1>;
+  }
+
+  const perangkatDesa = data.slice(0, 4);
+
   return (
     <section className="bg-gray-50 py-16">
       <div className="container max-w-7xl mx-auto px-4 lg:px-6">
@@ -43,13 +33,13 @@ export default function PerangkatDesaSection() {
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {perangkatDesa.map((item, index) => (
+          {perangkatDesa.map((item: any, index: number) => (
             <div
               key={index}
               className="bg-white rounded-xl shadow p-4 text-center"
             >
               <Image
-                src={item.foto}
+                src={item.image_url}
                 alt={item.nama}
                 width={200}
                 height={200}
