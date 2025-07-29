@@ -8,6 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
 import GaleriModal from "./GaleriModal";
 import galeriService from "@/services/galeri.service";
+import CardWithActions from "@/components/common/CardWithActions";
 
 export default function GaleriPage() {
   const [openModal, setOpenModal] = useState(false);
@@ -61,43 +62,17 @@ export default function GaleriPage() {
       </div>
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {galeriList?.map((item: any) => (
-          <Card key={item.id}>
-            <Image
-              src={item.image_url}
-              alt={item.caption}
-              width={400}
-              height={250}
-              className="w-full h-48 object-cover rounded-t"
-            />
-            <CardHeader>
-              <CardTitle className="text-lg">{item.keterangan}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-lg font-semibold line-clamp-4 mb-4">
-                {item.caption}
-              </p>
-              <div className="flex justify-between">
-                <Button
-                  size="sm"
-                  variant="outline"
-                  onClick={() => {
-                    setEditData(item);
-                    setOpenModal(true);
-                  }}
-                >
-                  Edit
-                </Button>
-                <Button
-                  size="sm"
-                  variant="destructive"
-                  onClick={() => handleDelete(item.id)}
-                >
-                  Hapus
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
+        {galeriList?.map((item: any, index: number) => (
+          <CardWithActions
+            key={index}
+            imageUrl={item.image_url}
+            title={item.caption}
+            onEdit={() => {
+              setEditData(item);
+              setOpenModal(true);
+            }}
+            onDelete={() => handleDelete(item.id)}
+          />
         ))}
 
         {galeriList?.length === 0 && (

@@ -15,8 +15,6 @@ export default function EditVisiMisiPage() {
   const [visi, setVisi] = useState("");
   const [misi, setMisi] = useState("");
 
-  console.log(visi, misi, "Visi dan Misi");
-
   const router = useRouter();
   const queryClient = useQueryClient();
 

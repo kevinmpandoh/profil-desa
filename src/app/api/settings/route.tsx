@@ -21,8 +21,6 @@ export async function PUT(req: NextRequest) {
   const supabase = await createClient();
   const values = await req.json();
 
-  console.log(values, "VALUES");
-
   const { error } = await supabase
     .from("settings")
     .update(values)

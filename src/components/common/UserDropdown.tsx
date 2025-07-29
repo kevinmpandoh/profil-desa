@@ -98,36 +98,6 @@ export default function UserDropdown({
 
         <hr className="my-5" />
 
-        <ul className="flex flex-col gap-1 pb-3 border-b border-gray-200 dark:border-gray-800">
-          <li>
-            <DropdownItem
-              onItemClick={onClose}
-              tag="a"
-              href="/dashboard/pengaturan/profil"
-              className="flex items-center gap-3 px-3 py-3 font-medium text-gray-700 rounded-lg group text-theme-sm hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300"
-            >
-              <User
-                className="text-primary  dark:group-hover:fill-gray-300"
-                size={24}
-              />
-              <span className="text-base font-medium">Akun Saya</span>
-            </DropdownItem>
-          </li>
-          <li>
-            <DropdownItem
-              onItemClick={onClose}
-              tag="a"
-              href="/dashboard/pengaturan/website"
-              className="flex items-center gap-3 px-3 py-3 font-semibold text-gray-700 rounded-lg group text-theme-sm hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300"
-            >
-              <Settings
-                className="text-primary  dark:group-hover:fill-gray-300"
-                size={24}
-              />
-              <span className="text-base font-medium">Pengaturan</span>
-            </DropdownItem>
-          </li>
-        </ul>
         <button
           onClick={() => mutation.mutate()}
           disabled={mutation.isPending}

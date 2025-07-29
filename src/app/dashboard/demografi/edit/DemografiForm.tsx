@@ -1,16 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
-
 import { toast } from "sonner";
+
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+
 import demografiService from "@/services/demografi.service";
 
-const wilayahList = ["Jaga I", "Jaga II", "Jaga III", "Jaga IV", "Jaga V"];
 type Demografi = {
   id?: number;
   wilayah: string;
@@ -61,60 +62,60 @@ export default function EditDemografiPage({
         yang diisi sesuai dengan jumlah KK, penduduk laki-laki dan perempuan.
       </p>
 
-      <div className="grid gap-6">
+      <div className="grid gap-8">
         {data.map((item, index) => (
           <Card key={index}>
             <CardHeader>
-              <CardTitle>{item.wilayah}</CardTitle>
+              <CardTitle className="text-lg">{item.wilayah}</CardTitle>
             </CardHeader>
-            <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="flex flex-col gap-4">
-                <label className="text-base font-medium">Nama Ketua Jaga</label>
-                <Input
-                  value={item.ketua}
-                  onChange={(e) => handleChange(index, "ketua", e.target.value)}
-                />
-              </div>
-              <div className="flex flex-col gap-4">
-                <label className="text-base font-medium">Jumlah KK</label>
-                <Input
-                  type="number"
-                  value={item.jumlah_kk}
-                  onChange={(e) =>
-                    handleChange(index, "jumlah_kk", e.target.value)
-                  }
-                />
-              </div>
-              <div className="flex flex-col gap-4">
-                <label className="text-base font-medium">
-                  Jumlah Laki-laki
-                </label>
-                <Input
-                  type="number"
-                  value={item.laki_laki}
-                  onChange={(e) =>
-                    handleChange(index, "laki_laki", e.target.value)
-                  }
-                />
-              </div>
-              <div className="flex flex-col gap-4">
-                <label className="text-base font-medium">
-                  Jumlah Perempuan
-                </label>
-                <Input
-                  type="number"
-                  value={item.perempuan}
-                  onChange={(e) =>
-                    handleChange(index, "perempuan", e.target.value)
-                  }
-                />
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <Label>Nama Ketua Jaga</Label>
+                  <Input
+                    value={item.ketua}
+                    onChange={(e) =>
+                      handleChange(index, "ketua", e.target.value)
+                    }
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label>Jumlah KK</Label>
+                  <Input
+                    type="number"
+                    value={item.jumlah_kk}
+                    onChange={(e) =>
+                      handleChange(index, "jumlah_kk", e.target.value)
+                    }
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label>Jumlah Laki-laki</Label>
+                  <Input
+                    type="number"
+                    value={item.laki_laki}
+                    onChange={(e) =>
+                      handleChange(index, "laki_laki", e.target.value)
+                    }
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label>Jumlah Perempuan</Label>
+                  <Input
+                    type="number"
+                    value={item.perempuan}
+                    onChange={(e) =>
+                      handleChange(index, "perempuan", e.target.value)
+                    }
+                  />
+                </div>
               </div>
             </CardContent>
           </Card>
         ))}
       </div>
 
-      <div className="flex justify-between items-center mt-8">
+      <div className="flex justify-end items-center gap-4 mt-8">
         <Button
           variant="outline"
           onClick={() => router.push("/dashboard/demografi")}

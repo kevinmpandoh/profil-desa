@@ -37,22 +37,6 @@ export async function POST(req: Request) {
 
   const user = data.user;
 
-  // Ambil data profile dari tabel "profiles"
-  // const { data: profile, error: profileError } = await supabase
-  //   .from("users")
-  //   .select("name, avatar_url")
-  //   .eq("id", user.id)
-  //   .single();
-
-  // if (profileError) {
-  //   return NextResponse.json(
-  //     { message: "Gagal mengambil data profil" },
-  //     { status: 500 }
-  //   );
-  // }
-
-  console.log(user, "USER");
-
   return NextResponse.json({
     message: "Login sukses",
     data: {

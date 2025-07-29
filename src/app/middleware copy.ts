@@ -7,8 +7,6 @@ export function middleware(request: NextRequest) {
   const accessToken = request.cookies.get("access_token")?.value;
   const pathname = request.nextUrl.pathname;
 
-  console.log(accessToken, "AKESE TOKEN");
-
   const isProtected = protectedRoutes.some((path) => pathname.startsWith(path));
 
   // Jika route tidak butuh login, lanjutkan saja

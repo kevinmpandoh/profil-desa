@@ -41,8 +41,6 @@ export async function DELETE(req: NextRequest) {
   const body = await req.json();
   const { url } = body;
 
-  console.log("Deleting URL:", url, body);
-
   if (!url) {
     return NextResponse.json(
       { error: "URL file tidak ditemukan" },

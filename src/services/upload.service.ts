@@ -15,7 +15,6 @@ export async function uploadImage(imageFile: File): Promise<string | null> {
 }
 
 export async function deleteImage(imageUrl: string) {
-  console.log("Deleting image:", imageUrl);
   try {
     const res = await api.delete("/upload", {
       data: { url: imageUrl },

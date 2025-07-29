@@ -1,13 +1,16 @@
+// app/dashboard/(admin)/layanan-publik/page.tsx
 "use client";
 
 import { useState } from "react";
 import Image from "next/image";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+// import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import LayananPublikModal from "./LayananPublikModal";
 import { toast } from "sonner";
 import layananPublikService from "@/services/layanan-publik.service";
+import { Pencil, Trash2, Info, Plus } from "lucide-react";
+import CardWithActions from "@/components/common/CardWithActions";
 
 export default function LayananPublikPage() {
   const [openModal, setOpenModal] = useState(false);
@@ -42,9 +45,7 @@ export default function LayananPublikPage() {
     },
   });
 
-  if (isLoading) {
-    return <h1>Loading</h1>;
-  }
+  if (isLoading) return <h1>Loading...</h1>;
 
   return (
     <div className="p-6 space-y-6">
@@ -56,48 +57,22 @@ export default function LayananPublikPage() {
             setOpenModal(true);
           }}
         >
-          + Tambah Layanan
+          <Plus /> Tambah Layanan
         </Button>
       </div>
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {layananList?.map((item: any) => (
-          <Card key={item.id}>
-            <Image
-              src={item.image_url}
-              alt={item.keterangan}
-              width={400}
-              height={250}
-              className="w-full h-48 object-cover rounded-t"
-            />
-            <CardHeader>
-              <CardTitle className="text-lg">{item.keterangan}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground line-clamp-4 mb-4">
-                {item.deskripsi}
-              </p>
-              <div className="flex justify-between">
-                <Button
-                  size="sm"
-                  variant="outline"
-                  onClick={() => {
-                    setEditData(item);
-                    setOpenModal(true);
-                  }}
-                >
-                  Edit
-                </Button>
-                <Button
-                  size="sm"
-                  variant="destructive"
-                  onClick={() => handleDelete(item.id)}
-                >
-                  Hapus
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
+          <CardWithActions
+            key={item.keterangan}
+            imageUrl={item.image_url}
+            title={item.keterangan}
+            onEdit={() => {
+              setEditData(item);
+              setOpenModal(true);
+            }}
+            onDelete={() => handleDelete(item.id)}
+          />
         ))}
 
         {layananList?.length === 0 && (

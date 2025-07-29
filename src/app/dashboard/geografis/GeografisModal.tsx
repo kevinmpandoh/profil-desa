@@ -8,9 +8,8 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-// import { label } from "@/components/ui/label";
-// import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
+import RichTextEditor from "@/components/editor/RichTextEditor";
 
 type Props = {
   open: boolean;
@@ -49,66 +48,73 @@ export default function GeografisModal({
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="max-w-3xl">
+      <DialogContent className="max-w-4xl">
         <DialogHeader>
           <DialogTitle>Edit Informasi Geografis</DialogTitle>
         </DialogHeader>
+
         <div className="space-y-4">
-          <div>
-            <label className="mb-4">Deskripsi</label>
-            <textarea
-              name="deskripsi"
+          {/* Deskripsi */}
+          <div className="space-y-2">
+            <label className="text-base font-medium text-gray-800">
+              Deskripsi
+            </label>
+            <RichTextEditor
               value={form.deskripsi}
-              onChange={handleChange}
-              rows={4}
-              className="w-full h-40 p-3 border rounded resize-y"
+              onChange={(value: string) =>
+                setForm((prev) => ({ ...prev, deskripsi: value }))
+              }
             />
           </div>
 
-          <div>
-            <label>Luas Wilayah</label>
+          {/* Luas Wilayah */}
+          <div className="space-y-2">
+            <label className="text-base font-medium text-gray-800">
+              Luas Wilayah
+            </label>
             <Input
               name="luas_wilayah"
               value={form.luas_wilayah}
               onChange={handleChange}
+              placeholder="Contoh: 1.234 Ha"
             />
           </div>
 
+          {/* Batas-batas */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label>Batas Utara</label>
-              <Input
-                name="batas_utara"
-                value={form.batas_utara}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <label>Batas Selatan</label>
-              <Input
-                name="batas_selatan"
-                value={form.batas_selatan}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <label>Batas Timur</label>
-              <Input
-                name="batas_timur"
-                value={form.batas_timur}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <label>Batas Barat</label>
-              <Input
-                name="batas_barat"
-                value={form.batas_barat}
-                onChange={handleChange}
-              />
-            </div>
+            {[
+              ["batas_utara", "Batas Utara"],
+              ["batas_selatan", "Batas Selatan"],
+              ["batas_timur", "Batas Timur"],
+              ["batas_barat", "Batas Barat"],
+            ].map(([name, label]) => (
+              <div key={name} className="space-y-2">
+                <label className="text-base font-medium text-gray-800">
+                  {label}
+                </label>
+                <Input
+                  name={name}
+                  value={form[name as keyof typeof form]}
+                  onChange={handleChange}
+                />
+              </div>
+            ))}
           </div>
 
+          {/* Map Embed */}
+          {/* <div className="space-y-2">
+            <label className="text-base font-medium text-muted-foreground">
+              Embed URL Peta (Google Maps)
+            </label>
+            <Input
+              name="map_embed_url"
+              value={form.map_embed_url}
+              onChange={handleChange}
+              placeholder="https://www.google.com/maps/embed?pb=..."
+            />
+          </div> */}
+
+          {/* Actions */}
           <div className="flex justify-end gap-2 pt-4">
             <Button variant="outline" onClick={onClose}>
               Batal

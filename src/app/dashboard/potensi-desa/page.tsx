@@ -8,6 +8,7 @@ import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import potensiDesaService from "@/services/potensi-desa.service";
 import { toast } from "sonner";
+import CardWithActions from "@/components/common/CardWithActions";
 
 export default function PotensiDesaPage() {
   const [openModal, setOpenModal] = useState(false);
@@ -60,44 +61,18 @@ export default function PotensiDesaPage() {
       </div>
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {potensiList?.map((item: any) => (
-          <Card key={item.id}>
-            <Image
-              src={item.image_url}
-              alt={item.judul}
-              width={400}
-              height={250}
-              className="w-full h-48 object-cover rounded-t"
-            />
-            <CardHeader>
-              <CardTitle className="text-lg">{item.judul}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground line-clamp-4 mb-4">
-                {item.deskripsi}
-              </p>
-              <div className="flex justify-between">
-                <Button
-                  size="sm"
-                  variant="outline"
-                  onClick={() => {
-                    setEditData(item);
-                    setOpenModal(true);
-                  }}
-                >
-                  Edit
-                </Button>
-
-                <Button
-                  size="sm"
-                  variant="destructive"
-                  onClick={() => handleDelete(item.id)}
-                >
-                  Hapus
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
+        {potensiList?.map((item: any, index: number) => (
+          <CardWithActions
+            key={index}
+            imageUrl={item.image_url}
+            title={item.judul}
+            description={item.deskripsi}
+            onEdit={() => {
+              setEditData(item);
+              setOpenModal(true);
+            }}
+            onDelete={() => handleDelete(item.id)}
+          />
         ))}
 
         {potensiList?.length === 0 && (

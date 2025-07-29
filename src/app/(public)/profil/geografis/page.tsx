@@ -26,8 +26,6 @@ export default function GeografisPage() {
     queryKey: ["geografis-desa"],
   });
 
-  console.log(data, "Geografis Data");
-
   if (isLoading) {
     return <div className="p-6">Loading...</div>;
   }

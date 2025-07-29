@@ -8,7 +8,6 @@ export default function RichTextViewer({
 }: {
   htmlContent: string;
 }) {
-  console.log(htmlContent, "HTML CONTENT IN VIEWER");
   return (
     <div
       className="prose max-w-none"

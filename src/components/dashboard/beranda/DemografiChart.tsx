@@ -32,7 +32,7 @@ export function DemografiChart({ data }: { data: any }) {
     { name: "Laki-laki", value: data.laki_laki },
     { name: "Perempuan", value: data.perempuan },
   ];
-  console.log(data, "DATA");
+
   return (
     <div className="bg-white dark:bg-muted p-4 rounded-xl shadow">
       <h3 className="text-lg font-semibold mb-4">Demografi Penduduk</h3>

@@ -13,6 +13,8 @@ import {
 } from "@/services/pemerintah-desa-service";
 import Image from "next/image";
 import { toast } from "sonner";
+import CardWithActions from "@/components/common/CardWithActions";
+import { Plus } from "lucide-react";
 
 export default function PemerintahDesaPage() {
   const [openModal, setOpenModal] = useState(false);
@@ -66,7 +68,8 @@ export default function PemerintahDesaPage() {
             setOpenModal(true);
           }}
         >
-          Tambah
+          <Plus />
+          Tambah Perangkat
         </Button>
       </div>
 
@@ -74,43 +77,21 @@ export default function PemerintahDesaPage() {
         <h1>Data tidak ada</h1>
       ) : (
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {data?.map((perangkat: any) => (
-            <Card key={perangkat.id}>
-              <CardHeader>
-                <CardTitle className="text-lg">{perangkat.nama}</CardTitle>
-                <p className="text-sm text-muted-foreground">
-                  {perangkat.jabatan}
-                </p>
-              </CardHeader>
-              <CardContent className="space-y-2">
-                <Image
-                  src={perangkat.image_url}
-                  alt={perangkat.nama}
-                  width={500}
-                  height={300}
-                  className="rounded-md h-40 w-full object-cover"
-                />
-
-                <div className="flex gap-2">
-                  <Button
-                    size="sm"
-                    onClick={() => {
-                      setEditData(perangkat);
-                      setOpenModal(true);
-                    }}
-                  >
-                    Edit
-                  </Button>
-                  <Button
-                    size="sm"
-                    variant="destructive"
-                    onClick={() => handleDelete(perangkat.id)}
-                  >
-                    Hapus
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
+          {data?.map((perangkat: any, index: number) => (
+            <CardWithActions
+              key={index}
+              imageUrl={perangkat.image_url}
+              title={perangkat.nama}
+              subtitle={perangkat.jabatan}
+              onEdit={() => {
+                setEditData(perangkat);
+                setOpenModal(true);
+              }}
+              onDelete={() => {
+                setEditData(perangkat);
+                setOpenModal(true);
+              }}
+            />
           ))}
         </div>
       )}

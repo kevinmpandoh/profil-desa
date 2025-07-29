@@ -5,16 +5,17 @@ import { useForm } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-// import { getSettings, updateSettings } from "@/services/settings.service";
-// import { label } from "@/components/ui/label";
+
 import { uploadImage } from "@/services/upload.service";
 import { getSettings, updateSettings } from "@/services/settings.service";
+import { toast } from "sonner";
 
 export default function PengaturanPage() {
   const queryClient = useQueryClient();
   const form = useForm({
     defaultValues: {
       nama_desa: "",
+      alamat: "",
       logo_url: "",
       email: "",
       telepon: "",
@@ -30,7 +31,7 @@ export default function PengaturanPage() {
     mutationFn: updateSettings,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["settings"] });
-      alert("Pengaturan berhasil disimpan");
+      toast.success("Pengaturan berhasil disimpan");
     },
   });
 
@@ -48,24 +49,11 @@ export default function PengaturanPage() {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    // const formData = new FormData();
-    // formData.append("logo", file);
-
     const image_url = await uploadImage(file);
 
     if (image_url) {
       form.setValue("logo_url", image_url);
     }
-
-    // const res = await fetch("/api/upload/logo", {
-    //   method: "POST",
-    //   body: formData,
-    // });
-
-    // const result = await res.json();
-    // if (result.url) {
-    //   form.setValue("logo_url", result.url);
-    // }
   };
 
   return (
@@ -77,6 +65,15 @@ export default function PengaturanPage() {
           <Input {...form.register("nama_desa")} />
         </div>
 
+        <div>
+          <label>Alamat Lengkap</label>
+          <textarea
+            {...form.register("alamat")}
+            name="deskripsi"
+            rows={5}
+            className="w-full h-40 p-3 border rounded resize-y"
+          />
+        </div>
         <div>
           <label>Email</label>
           <Input type="email" {...form.register("email")} />

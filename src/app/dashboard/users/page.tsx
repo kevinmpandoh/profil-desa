@@ -14,13 +14,12 @@ import {
 import { toast } from "sonner";
 import UserModal from "./UserModal";
 import userService from "@/services/user.service";
+import { Pencil, Trash } from "lucide-react";
 
 export default function UserManagementPage() {
   const [openModal, setOpenModal] = useState(false);
   const [editData, setEditData] = useState<any | null>(null);
   const queryClient = useQueryClient();
-
-  console.log(editData, "EDIT DATA");
 
   const { data: users = [], isLoading } = useQuery({
     queryKey: ["users"],
@@ -98,6 +97,7 @@ export default function UserManagementPage() {
                         setOpenModal(true);
                       }}
                     >
+                      <Pencil />
                       Edit
                     </Button>
                     {user.user_metadata.role !== "super admin" && (
@@ -106,6 +106,7 @@ export default function UserManagementPage() {
                         variant="destructive"
                         onClick={() => handleDelete(user.id)}
                       >
+                        <Trash />
                         Hapus
                       </Button>
                     )}
