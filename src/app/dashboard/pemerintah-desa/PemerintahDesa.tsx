@@ -15,6 +15,8 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { deleteImage, uploadImage } from "@/services/upload.service";
 import { toast } from "sonner";
+import { cn } from "@/lib/utils";
+import ImageDropzone from "@/components/common/ImageDropzone";
 
 type Props = {
   open: boolean;
@@ -26,6 +28,9 @@ type Props = {
     image_url: string; // URL foto jika edit
   };
 };
+
+const dropzoneStyle =
+  "w-full border border-dashed border-gray-400 rounded-lg p-4 text-center cursor-pointer transition hover:bg-gray-50";
 
 export default function PemerintahDesaModal({
   open,
@@ -127,17 +132,19 @@ export default function PemerintahDesaModal({
           </div>
 
           <div>
-            <label>Foto</label>
-            <Input type="file" accept="image/*" onChange={handleFileChange} />
-            {preview && (
-              <Image
-                src={preview}
-                alt="Preview Foto"
-                width={100}
-                height={100}
-                className="mt-2 rounded object-cover border"
-              />
-            )}
+            <label className="block mb-2 font-medium">Foto</label>
+            <ImageDropzone
+              value={preview}
+              onChange={(file) => {
+                setFotoFile(file);
+                setPreview(URL.createObjectURL(file));
+              }}
+              onRemove={() => {
+                setFotoFile(null);
+                setPreview(null);
+              }}
+              className="w-36"
+            />
           </div>
         </div>
 

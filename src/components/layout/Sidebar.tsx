@@ -18,6 +18,8 @@ import {
   User,
 } from "lucide-react";
 import { useSidebarStore } from "@/app/stores/sidebar";
+import { useQuery } from "@tanstack/react-query";
+import { getSettings } from "@/services/settings.service";
 
 type NavItem = {
   name: string;
@@ -89,6 +91,11 @@ const AppSidebar: React.FC = () => {
   const { isExpanded, isMobileOpen, isHovered, setIsHovered } =
     useSidebarStore();
   const pathname = usePathname();
+
+  const { data, isLoading } = useQuery({
+    queryKey: ["settings"],
+    queryFn: getSettings,
+  });
 
   const isActive = useCallback((path: string) => path === pathname, [pathname]);
 
@@ -299,24 +306,29 @@ const AppSidebar: React.FC = () => {
             <div className="flex flex-col justify-center items-center">
               <Image
                 className="dark:hidden"
-                src="/logo-desa.png"
+                src={data?.logo_url || "/logo-desa.png"}
                 alt="Logo"
                 width={48}
                 height={48}
               />
               <Image
                 className="hidden dark:block"
-                src="/logo-desa.png"
+                src={data?.logo_url || "/logo-desa.png"}
                 alt="Logo"
                 width={48}
                 height={48}
               />
               <h2 className="text-center text-2xl font-semibold text-brand-500 mx-auto">
-                Desa Wuwuk
+                {data?.nama_aplikasi || "Desa Wuwuk"}
               </h2>
             </div>
           ) : (
-            <Image src="/logo-desa.png" alt="Logo" width={32} height={32} />
+            <Image
+              src={data?.logo_url || "/logo-desa.png"}
+              alt="Logo"
+              width={32}
+              height={32}
+            />
           )}
         </Link>
       </div>

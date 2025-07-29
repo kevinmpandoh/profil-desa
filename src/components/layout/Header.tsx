@@ -6,11 +6,11 @@ import { useState } from "react";
 import { ChevronDown, LayoutDashboard, LogOut, Menu } from "lucide-react";
 import Image from "next/image";
 import { useAuthStore } from "@/app/stores/useAuthStore";
-import axios from "axios";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { logout } from "@/services/auth.service";
 import { toast } from "sonner";
 import { Button } from "../ui/button";
+import { getSettings } from "@/services/settings.service";
 
 export default function Header() {
   const pathname = usePathname();
@@ -21,6 +21,11 @@ export default function Header() {
   const { user, setUser, clearUser } = useAuthStore();
 
   const isLoggedIn = !!user;
+
+  const { data, isLoading } = useQuery({
+    queryKey: ["settings"],
+    queryFn: getSettings,
+  });
 
   const adminName = user?.name || "Admin Desa";
 
@@ -45,7 +50,7 @@ export default function Header() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2.5">
           <Image
-            src="/logo-desa.png"
+            src={data?.logo_url || "/logo-desa.png"}
             alt="Logo Desa"
             width={24}
             height={24}
@@ -54,7 +59,7 @@ export default function Header() {
           <div className="leading-tight">
             <h3 className="text-xl font-bold text-brand-600">Desa Wuwuk</h3>
             <p className="text-sm text-gray-600">
-              Kec. Tombariri, Kab. Minahasa Selatan
+              Kec. {data?.kecamatan || "Tombariri"}, Kab. {data?.kabupaten}
             </p>
           </div>
         </Link>

@@ -15,6 +15,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { deleteImage, uploadImage } from "@/services/upload.service";
 import { toast } from "sonner";
+import ImageDropzone from "@/components/common/ImageDropzone";
 
 type Props = {
   open: boolean;
@@ -127,16 +128,18 @@ export default function PotensiDesaModal({
 
           <div>
             <label>Foto</label>
-            <Input type="file" accept="image/*" onChange={handleFileChange} />
-            {preview && (
-              <Image
-                src={preview}
-                alt="Preview Foto"
-                width={100}
-                height={100}
-                className="mt-2 rounded object-cover border"
-              />
-            )}
+            <ImageDropzone
+              value={preview}
+              onChange={(file) => {
+                setFotoFile(file);
+                setPreview(URL.createObjectURL(file));
+              }}
+              onRemove={() => {
+                setFotoFile(null);
+                setPreview(null);
+              }}
+              className="w-36"
+            />
           </div>
         </div>
 

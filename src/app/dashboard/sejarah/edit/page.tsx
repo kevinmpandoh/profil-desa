@@ -11,6 +11,7 @@ import { ArrowLeft } from "lucide-react";
 import Image from "next/image";
 import { uploadImage } from "@/services/upload.service";
 import RichTextEditor from "@/components/editor/RichTextEditor";
+import ImageDropzone from "@/components/common/ImageDropzone";
 
 export default function EditSejarahPage() {
   const [konten, setKonten] = useState("");
@@ -82,23 +83,25 @@ export default function EditSejarahPage() {
       {/* Upload Gambar */}
       <div>
         <label className="block font-medium mb-1">Gambar</label>
-        <input type="file" accept="image/*" onChange={handleGambarChange} />
-        {previewUrl && (
-          <Image
-            src={previewUrl}
-            alt="Preview Gambar"
-            width={200}
-            height={100}
-            className="mt-4 rounded border"
-          />
-        )}
+
+        <ImageDropzone
+          value={previewUrl}
+          onChange={(file) => {
+            setGambarFile(file);
+            setPreviewUrl(URL.createObjectURL(file));
+          }}
+          onRemove={() => {
+            setGambarFile(null);
+            setPreviewUrl(null);
+          }}
+          className="w-48"
+        />
       </div>
 
       {/* Rich Text Editor */}
       <div>
         <label className="block font-medium mb-1">Konten</label>
-        {/* <LexicalEditor onChange={setKonten} initialHTML={konten} /> */}
-        {/* <RichTextEditor value={konten} onChange={setKonten} /> */}
+
         {konten !== "" ? (
           <RichTextEditor value={konten} onChange={setKonten} />
         ) : (

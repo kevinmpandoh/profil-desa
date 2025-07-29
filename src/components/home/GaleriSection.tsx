@@ -16,6 +16,8 @@ export default function GaleriDesaSection() {
     queryFn: galeriService.get,
   });
 
+  const galeriList = galeriDesa.slice(0, 5);
+
   const closeModal = () => setSelectedIndex(null);
   const showPrev = () =>
     setSelectedIndex((prev) =>
@@ -27,11 +29,7 @@ export default function GaleriDesaSection() {
     );
 
   useEffect(() => {
-    if (selectedIndex !== null) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
+    document.body.style.overflow = selectedIndex !== null ? "hidden" : "auto";
   }, [selectedIndex]);
 
   useEffect(() => {
@@ -42,10 +40,14 @@ export default function GaleriDesaSection() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
-  const galeriList = galeriDesa.slice(0, 5);
-
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return (
+      <section className="py-16 bg-white text-center">
+        <div className="text-brand-600 font-medium text-xl animate-pulse">
+          Memuat galeri...
+        </div>
+      </section>
+    );
   }
 
   return (
@@ -65,10 +67,14 @@ export default function GaleriDesaSection() {
 
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
           {galeriList.map((item: any, index: number) => (
-            <div
+            <motion.div
               key={index}
               className="relative overflow-hidden rounded-xl group shadow cursor-pointer"
               onClick={() => setSelectedIndex(index)}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
             >
               <Image
                 src={item.image_url}
@@ -80,7 +86,7 @@ export default function GaleriDesaSection() {
               <div className="absolute bottom-0 left-0 right-0 bg-gray-600 bg-opacity-40 text-white text-xs text-center py-2.5">
                 {item.caption}
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
@@ -120,7 +126,13 @@ export default function GaleriDesaSection() {
               <ChevronRight className="w-12 h-12" />
             </button>
 
-            <div className="relative max-w-4xl w-full">
+            <motion.div
+              className="relative max-w-4xl w-full"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
               <Image
                 src={galeriDesa[selectedIndex].image_url}
                 alt={galeriDesa[selectedIndex].caption}
@@ -131,7 +143,7 @@ export default function GaleriDesaSection() {
               <p className="text-white text-center mt-4">
                 {galeriDesa[selectedIndex].caption}
               </p>
-            </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

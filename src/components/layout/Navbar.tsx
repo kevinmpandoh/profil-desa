@@ -6,11 +6,18 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState, useEffect, useRef } from "react";
 import UserDropdown from "../common/UserDropdown";
+import { useQuery } from "@tanstack/react-query";
+import { getSettings } from "@/services/settings.service";
 
 const Navbar: React.FC = () => {
   const [openDropdown, setOpenDropdown] = useState<
     "notification" | "user" | "messages" | null
   >(null);
+
+  const { data, isLoading } = useQuery({
+    queryKey: ["settings"],
+    queryFn: getSettings,
+  });
 
   const toggleDropdown = (dropdown: "notification" | "user" | "messages") => {
     setOpenDropdown((prev) => (prev === dropdown ? null : dropdown));
@@ -23,10 +30,6 @@ const Navbar: React.FC = () => {
   const { isMobileOpen, toggleSidebar, toggleMobileSidebar } =
     useSidebarStore();
   //   const { user } = useAuthStore();
-
-  const user = {
-    name: "KEVIN",
-  };
 
   const handleToggle = () => {
     if (window.innerWidth >= 1024) {
@@ -104,14 +107,14 @@ const Navbar: React.FC = () => {
               width={154}
               height={32}
               className="dark:hidden"
-              src="./logos/Logo-Stay-Kost.svg"
+              src="/logo-desa.png"
               alt="Logo"
             />
             <Image
               width={154}
               height={32}
               className="hidden dark:block"
-              src="./images/logo/logo-dark.svg"
+              src="/logo-desa.png"
               alt="Logo"
             />
           </Link>

@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { deleteImage, uploadImage } from "@/services/upload.service";
 import { toast } from "sonner";
+import ImageDropzone from "@/components/common/ImageDropzone";
 // import layananPublikService from "@/services/layanan-publik.service";
 
 interface Props {
@@ -100,8 +101,24 @@ export default function GaleriModal({
             {defaultValues ? "Edit Galeri Publik" : "Tambah Galeri Publik"}
           </DialogTitle>
         </DialogHeader>
-        s
+
         <div className="space-y-4">
+          <div className="space-y-2">
+            <label>Gambar</label>
+            <ImageDropzone
+              value={preview}
+              onChange={(file) => {
+                setFotoFile(file);
+                setPreview(URL.createObjectURL(file));
+              }}
+              onRemove={() => {
+                setFotoFile(null);
+                setPreview(null);
+              }}
+              className="w-36"
+            />
+          </div>
+
           <div className="space-y-2">
             <label className="mb-4">Keterangan</label>
             <Input
@@ -110,20 +127,6 @@ export default function GaleriModal({
               onChange={(e) => setKeterangan(e.target.value)}
               placeholder="Tuliskan keterangan galeri publik"
             />
-          </div>
-
-          <div className="space-y-2">
-            <label>Gambar</label>
-            <Input type="file" accept="image/*" onChange={handleFileChange} />
-            {preview && (
-              <Image
-                src={preview}
-                alt="Preview Foto"
-                width={100}
-                height={100}
-                className="mt-2 rounded object-cover border"
-              />
-            )}
           </div>
 
           <div className="flex justify-end space-x-2 pt-2">

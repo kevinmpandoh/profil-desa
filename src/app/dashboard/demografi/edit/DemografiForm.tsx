@@ -55,65 +55,55 @@ export default function EditDemografiPage({
   };
 
   return (
-    <div className="p-6 space-y-6">
-      <h1 className="text-2xl font-semibold mb-4">Edit Data Demografi Desa</h1>
-      <p className="text-muted-foreground text-sm mb-6">
-        Silakan edit data penduduk berdasarkan wilayah (Jaga). Pastikan data
-        yang diisi sesuai dengan jumlah KK, penduduk laki-laki dan perempuan.
-      </p>
-
-      <div className="grid gap-8">
-        {data.map((item, index) => (
-          <Card key={index}>
-            <CardHeader>
-              <CardTitle className="text-lg">{item.wilayah}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <Label>Nama Ketua Jaga</Label>
-                  <Input
-                    value={item.ketua}
-                    onChange={(e) =>
-                      handleChange(index, "ketua", e.target.value)
-                    }
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label>Jumlah KK</Label>
-                  <Input
-                    type="number"
-                    value={item.jumlah_kk}
-                    onChange={(e) =>
-                      handleChange(index, "jumlah_kk", e.target.value)
-                    }
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label>Jumlah Laki-laki</Label>
-                  <Input
-                    type="number"
-                    value={item.laki_laki}
-                    onChange={(e) =>
-                      handleChange(index, "laki_laki", e.target.value)
-                    }
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label>Jumlah Perempuan</Label>
-                  <Input
-                    type="number"
-                    value={item.perempuan}
-                    onChange={(e) =>
-                      handleChange(index, "perempuan", e.target.value)
-                    }
-                  />
-                </div>
+    <div className="grid gap-8">
+      {data.map((item, index) => (
+        <Card key={index}>
+          <CardHeader>
+            <CardTitle className="text-lg">{item.wilayah}</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <Label>Nama Ketua Jaga</Label>
+                <Input
+                  value={item.ketua}
+                  onChange={(e) => handleChange(index, "ketua", e.target.value)}
+                />
               </div>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
+              <div className="space-y-2">
+                <Label>Jumlah KK</Label>
+                <Input
+                  type="number"
+                  value={item.jumlah_kk}
+                  onChange={(e) =>
+                    handleChange(index, "jumlah_kk", e.target.value)
+                  }
+                />
+              </div>
+              <div className="space-y-2">
+                <Label>Jumlah Laki-laki</Label>
+                <Input
+                  type="number"
+                  value={item.laki_laki}
+                  onChange={(e) =>
+                    handleChange(index, "laki_laki", e.target.value)
+                  }
+                />
+              </div>
+              <div className="space-y-2">
+                <Label>Jumlah Perempuan</Label>
+                <Input
+                  type="number"
+                  value={item.perempuan}
+                  onChange={(e) =>
+                    handleChange(index, "perempuan", e.target.value)
+                  }
+                />
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      ))}
 
       <div className="flex justify-end items-center gap-4 mt-8">
         <Button
